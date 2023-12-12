@@ -1,11 +1,27 @@
 import Image from "next/image";
+import Cursor from "@/app/(home)/_components/cursor/cursor";
+import Navbar from "@/app/(home)/_components/navigation_bar/navigation_bar";
 
 export default function Home() {
   return (
     <div>
-      <p className="text-3xl font-medium text-sky-700">
-        Sign - in - to - your account
-      </p>
+      <Cursor />
+      <section id="Homepage">
+        <Navbar />
+      </section>
+      {/* <section id="Services">
+        <Parallax type="services" />
+      </section>
+      <section>
+        <Services />
+      </section>
+      <section id="Portfolio">
+        <Parallax type="portfolio" />
+      </section>
+      <Portfolio />
+      <section id="Contact">
+        <Contact />
+      </section> */}
     </div>
   );
 }
