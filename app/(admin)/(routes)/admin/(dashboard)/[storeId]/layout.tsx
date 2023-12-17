@@ -10,10 +10,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
   params: { storeId: string };
 }) {
-  // const user = await getCurrentUser();
-
-  // const store = await getFirstStore(user?.id as string, params.storeId);
-
   return (
     <>
       <div>This is nav bar</div>

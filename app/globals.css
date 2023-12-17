@@ -2,23 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-section {
-  height: 100vh;
-  width: 100vw;
-  scroll-snap-align: center;
-  overflow: hidden;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -29,7 +12,7 @@ section {
 html,
 body:root {
   height: 100%;
-  background-color: #0c0c1d;
+  /* background-color: #0c0c1d; */
   color: lightgray;
 }
 
