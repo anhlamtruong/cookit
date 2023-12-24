@@ -10,7 +10,6 @@ import Modal from "@/components//ui/modal";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -75,9 +74,10 @@ export const StoreModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel htmlFor="name">Name</FormLabel>
                     <FormControl>
                       <Input
+                        id="name"
                         disabled={loading}
                         placeholder="Cookit-Store"
                         {...field}

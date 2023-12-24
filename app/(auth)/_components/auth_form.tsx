@@ -158,9 +158,10 @@ const AuthForm = () => {
                   name={f.name as any}
                   render={({ field }) => (
                     <FormItem className="w-full ">
-                      <FormLabel>{f.label}</FormLabel>
+                      <FormLabel htmlFor={f.name}>{f.label}</FormLabel>
                       <FormControl>
                         <Input
+                          id={f.name}
                           type={f.name}
                           placeholder={f.placeholder}
                           {...field}
@@ -183,12 +184,13 @@ const AuthForm = () => {
                   name={f.name as any}
                   render={({ field }) => (
                     <FormItem className="w-full ">
-                      <FormLabel>{f.label}</FormLabel>
+                      <FormLabel htmlFor={f.name}>{f.label}</FormLabel>
                       <FormControl>
                         <Input
                           placeholder={f.placeholder}
                           {...field}
                           type={f.name}
+                          id={f.name}
                           disabled={isLoading}
                         />
                       </FormControl>

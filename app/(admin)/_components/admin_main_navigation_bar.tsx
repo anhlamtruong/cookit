@@ -14,7 +14,7 @@ const MainNavigationBar = ({
 
   const routes = [
     {
-      href: `admin/${params.storeId}/settings`,
+      href: `/admin/${params.storeId}/settings`,
       label: "Settings",
       active: pathname === `admin/${params.storeId}/settings`,
     },
