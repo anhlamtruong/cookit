@@ -24,6 +24,7 @@ import { Icons } from "@/components/ui/icons";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useStoreData } from "@/hooks/useStore";
+import AlertModal from "@/components/modals/alert_modal";
 interface SettingsForm {
   initialDataStore: Store;
 }
@@ -53,15 +54,36 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
       )) as Store;
       setStoreData(newStore);
       router.refresh();
-      console.log(data);
+      toast.success("Successfully updated store");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
   };
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/admin/${params.storeId}`);
+      router.refresh();
+      toast.arguments("SUCCESSFULLY DELETED STORE");
+      router.push("/admin");
+    } catch (error) {
+      toast.error("Make sure you removed all products and categories first.");
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      ></AlertModal>
       <div className=" flex items-center justify-between">
         <Heading title="Settings" description="Manage Store Preferences" />
         <Button
