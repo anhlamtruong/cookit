@@ -25,6 +25,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useStoreData } from "@/hooks/useStore";
 import AlertModal from "@/components/modals/alert_modal";
+import { ApiAlert } from "@/components/ui/api_alert";
 interface SettingsForm {
   initialDataStore: Store;
 }
@@ -126,6 +127,8 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiAlert title="test" description="test-desc"></ApiAlert>
     </>
   );
 };
