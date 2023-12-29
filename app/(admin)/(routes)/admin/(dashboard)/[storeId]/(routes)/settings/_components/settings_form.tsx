@@ -128,7 +128,11 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
         </form>
       </Form>
       <Separator />
-      <ApiAlert title="test" description="test-desc"></ApiAlert>
+      <ApiAlert
+        title="test"
+        description="test-desc"
+        variant="public"
+      ></ApiAlert>
     </>
   );
 };
