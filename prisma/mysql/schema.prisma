@@ -18,31 +18,47 @@ model Store {
   name String @unique
   
   userId String
-  menus      Menu[]
-  order Order[]
+  menus      Menu[] @relation("StoreToMenu")
+  billboards Billboard[] @relation("StoreToBillboard")
+  order Order[] @relation("StoreToOrder")
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+}
+
+model Billboard{
+  id String @id @default(uuid())
+  storedId String
+  store Store @relation("StoreToBillboard", fields: [storedId], references: [id])
+  label String
+  imageUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storedId])
 }
 
 model Chef {
   id                Int         @id @default(autoincrement())
   userId            Int         // Link to the User ID in the authentication service
-  menus             Menu[]
-  schedules         ChefSchedule[]
+  menus             Menu[] @relation("ChefToMenu")
+  schedules         ChefSchedule[] @relation("ChefToChefSchedule")
   // ... other fields specific to the chef ...
 }
 
 model Menu {
   id                Int         @id @default(autoincrement())
   chefId            Int
-  chef              Chef        @relation(fields: [chefId], references: [id])
-  orderItems      OrderItem[]   // Add this line to establish the opposite relation
+  chef              Chef        @relation("ChefToMenu",fields: [chefId], references: [id])
+  orderItems      OrderItem[]   @relation("MenuToOrderItem")
   title             String
   description       String?
   price             Float
-  availableDates    ChefSchedule[]
+  availableDates    ChefSchedule[] @relation("MenuToChefSchedule")
   storeId    String
-  store      Store    @relation(fields: [storeId], references: [id])
+  store      Store    @relation("StoreToMenu",fields: [storeId], references: [id])
+
+  @@index([storeId])
+  @@index([chefId])
   // ... other fields ...
 }
 
@@ -50,31 +66,36 @@ model ChefSchedule {
   id                Int         @id @default(autoincrement())
   menuId            Int
   chefId            Int
-  chef              Chef        @relation(fields: [chefId], references: [id])
-  menu              Menu        @relation(fields: [menuId], references: [id])
-  date              DateTime    // Date and time available for pickup
-  // ... other fields ...
+  chef              Chef        @relation("ChefToChefSchedule",fields: [chefId], references: [id])
+  menu              Menu        @relation("MenuToChefSchedule",fields: [menuId], references: [id])
+  date              DateTime    
+  @@index([chefId])
+  @@index([menuId])
 }
 
 model Order {
   id                Int         @id @default(autoincrement())
   customerId        Int         // Link to the User ID in the authentication service
-  orderItems        OrderItem[]
+  orderItems        OrderItem[] @relation("OrderToOrderItem")
   status            OrderStatus
   orderDate         DateTime    @default(now())
   pickupDate        DateTime?   // When the customer plans to pick up the order
   storeId    String?
-  store      Store?    @relation(fields: [storeId], references: [id])
+  store      Store?    @relation("StoreToOrder",fields: [storeId], references: [id])
+  @@index([storeId])
   // ... other fields ...
 }
 
 model OrderItem {
   id                Int         @id @default(autoincrement())
   orderId           Int
-  order             Order       @relation(fields: [orderId], references: [id])
+  order             Order       @relation("OrderToOrderItem",fields: [orderId], references: [id])
   menuId            Int
-  menu              Menu        @relation(fields: [menuId], references: [id])
+  menu              Menu        @relation("MenuToOrderItem",fields: [menuId], references: [id])
   quantity          Int
+
+  @@index([orderId])
+  @@index([menuId])
   
   // ... other fields ...
 }

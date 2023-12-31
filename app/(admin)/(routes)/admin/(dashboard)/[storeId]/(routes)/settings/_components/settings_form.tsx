@@ -23,9 +23,10 @@ import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useStoreData } from "@/hooks/useStore";
+import useStoreData from "@/hooks/useStore";
 import AlertModal from "@/components/modals/alert_modal";
 import { ApiAlert } from "@/components/ui/api_alert";
+import useOrigin from "@/hooks/use_origin";
 interface SettingsForm {
   initialDataStore: Store;
 }
@@ -37,8 +38,9 @@ type SettingsFormValues = z.infer<typeof formSchema>;
 const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
   const [open, setOpen] = useState(false);
-  const { setStoreData } = useStoreData();
+  const { setStoreData, removeStoreData } = useStoreData();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<SettingsFormValues>({
@@ -66,6 +68,7 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
     try {
       setLoading(true);
       await axios.delete(`/api/admin/${params.storeId}`);
+      removeStoreData();
       router.refresh();
       toast.arguments("SUCCESSFULLY DELETED STORE");
       router.push("/admin");
@@ -129,10 +132,10 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
       </Form>
       <Separator />
       <ApiAlert
-        title="test"
-        description="test-desc"
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${params.storeId}`}
         variant="public"
-      ></ApiAlert>
+      />
     </>
   );
 };

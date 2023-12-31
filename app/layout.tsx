@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/contexts/user_page/ThemeContext";
 import ToasterContext from "@/contexts/user_page/ToasterContext";
 import AuthContext from "@/contexts/authentication/AuthContext";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
   description:
     "Watch tutorials of cooking, or find the chief near by to others",
 };
+// const queryClient = new QueryClient();
+// const queryClientUser = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -20,6 +23,8 @@ export default function RootLayout({
 }) {
   return (
     <ThemeProvider>
+      {/* <QueryClientProvider client={queryClient}> */}
+      {/* <QueryClientProvider client={queryClientUser}> */}
       <html lang="en">
         <body className={inter.className}>
           <AuthContext>
@@ -28,6 +33,9 @@ export default function RootLayout({
           </AuthContext>
         </body>
       </html>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      {/* </QueryClientProvider> */}
+      {/* </QueryClientProvider> */}
     </ThemeProvider>
   );
 }

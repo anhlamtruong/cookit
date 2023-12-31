@@ -5,18 +5,17 @@ import MainNavigationBar from "@/app/(admin)/_components/admin_main_navigation_b
 import StoreSwitcher from "@/app/(admin)/_components/store-switcher";
 
 import { Store } from "@prisma-client-mysql";
-import { User } from "@prisma-client-mongo";
-import prismaMySQL from "@/lib/service/prisma_mysql";
-import getCurrentUser from "@/actions/getCurrentUser";
 import useAsyncDataFetcher from "@/hooks/useAsyncDataFetcher";
 import { cn } from "@/lib/utils";
+import { useStores } from "@/hooks/useStore";
 
 interface NavigationBarProps {
   className: string;
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ className = "" }) => {
-  const { data: storesData } = useAsyncDataFetcher<Store[]>("/api/stores");
+  // const { data: storesData } = useAsyncDataFetcher<Store[]>("/api/stores");
+  const { data: stores, isLoading } = useStores();
   // console.log(storesData);
   return (
     <div className={cn(" border-b", { className })}>
@@ -27,7 +26,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ className = "" }) => {
         </div>
         <div className="flex gap-3">
           <MainNavigationBar></MainNavigationBar>
-          <StoreSwitcher items={storesData ?? []} />
+          <StoreSwitcher items={stores ?? []} />
+          {/* <StoreSwitcher items={storesData ?? []} /> */}
         </div>
       </div>
     </div>

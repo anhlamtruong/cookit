@@ -1,7 +1,5 @@
 import useSWR from "swr";
-import axios from "axios";
-
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+import fetcher from "@/lib/utils/fetcher";
 
 function useAsyncDataFetcher<T>(url: string, fallbackData?: T) {
   const { data, error } = useSWR<T>(url, fetcher, { fallbackData });

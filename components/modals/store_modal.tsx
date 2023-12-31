@@ -22,6 +22,7 @@ import { Icons } from "@/components/ui/icons";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useCreateStore } from "@/hooks/useStore";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -31,6 +32,7 @@ export const StoreModal = () => {
   const storeModal = useStoreModal();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const { mutate: addStore } = useCreateStore();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,11 +46,22 @@ export const StoreModal = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/store", values);
-      if (response.status === 200) {
-        toast.success("Success Creating Store!");
-        router.refresh();
-        storeModal.onClose();
-      }
+
+      // if (response.status === 200) {
+      //   toast.success("Success Creating Store!");
+      //   router.refresh();
+      //   storeModal.onClose();
+      // }
+      addStore(response.data, {
+        onSuccess: () => {
+          toast.success("Success Creating Store!");
+          router.refresh();
+          storeModal.onClose();
+        },
+        // onError: () => {
+        //   toast.error("Something went wrong :(, please try again");
+        // },
+      });
     } catch (error) {
       console.log(error);
 

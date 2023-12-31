@@ -1,23 +1,37 @@
 import { create } from "zustand";
 import { Store } from "@prisma-client-mysql";
 import { User } from "@prisma-client-mongo";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { createNewStore, fetchStores } from "@/lib/service/api/stores";
+
 interface useStoreModalStore {
   storeData: null | Store;
   setStoreData: (data: Store) => void;
+  removeStoreData: () => void;
 }
 
 const useStore = create<useStoreModalStore>((set) => ({
   storeData: null,
   setStoreData: (data) => set({ storeData: data }),
+  removeStoreData: () => set({ storeData: null }),
 }));
 
 export default useStore;
 
-export const useStoreData = () => {
-  const storeData = useStore((state) => state.storeData);
-  const setStoreData = useStore((state) => state.setStoreData);
+export const useStores = () => {
+  return useQuery({
+    queryKey: ["stores"],
+    queryFn: () => fetchStores(),
+  });
+};
 
-  // Any additional logic or effects
-
-  return { storeData, setStoreData };
+export const useCreateStore = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createNewStore,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["stores"] });
+    },
+  });
 };
