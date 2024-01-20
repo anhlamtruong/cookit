@@ -1,23 +1,18 @@
 import getCurrentUser from "@/actions/getCurrentUser";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import { NextResponse } from "next/server";
+import { UserRole } from "@/generated/@prisma-client-authenticate";
+import { currentRole } from "@/authentication/lib/auth";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const user = await getCurrentUser();
-    if (!user?.id) {
-      return NextResponse.redirect(new URL("/sign-in"));
+    const role = await currentRole();
+
+    if (role === UserRole.ADMIN) {
+      return new NextResponse(null, { status: 200 });
     }
 
-    const store = await prismaMySQL.store.findFirst({
-      where: { userId: user.id },
-    });
-
-    if (store) {
-      return NextResponse.json(store);
-    } else {
-      return NextResponse.redirect(new URL("http://localhost:3000/admin"));
-    }
+    return new NextResponse(null, { status: 403 });
   } catch (error) {
     console.log(error, "ADMIN ERROR");
     return new NextResponse("API ERROR", {

@@ -1,22 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
 
-module.exports = nextConfig;
+const { PrismaPlugin } = require("@prisma/nextjs-monorepo-workaround-plugin");
 
-const path = require("path");
+const nextConfig = {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.plugins = [...config.plugins, new PrismaPlugin()];
+    }
 
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+    return config;
   },
-  images: {
-    remotePatterns: [
-      {
-        hostname: "lh3.googleusercontent.com",
-      },
-      {
-        hostname: "res.cloudinary.com",
-      },
-    ],
+  experimental: {
+    appDir: true,
   },
 };
+
+module.exports = nextConfig;
