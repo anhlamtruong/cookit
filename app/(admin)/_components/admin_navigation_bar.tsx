@@ -16,7 +16,7 @@ interface NavigationBarProps {
 const NavigationBar: React.FC<NavigationBarProps> = ({ className = "" }) => {
   // const { data: storesData } = useAsyncDataFetcher<Store[]>("/api/stores");
   const { data: stores, isLoading } = useStores();
-  // console.log(storesData);
+
   return (
     <div className={cn(" border-b", { className })}>
       <div className="flex h-18 items-center px-4">

@@ -67,7 +67,6 @@ export async function POST(req: Request) {
         status: 405,
       });
     }
-    console.log("RUNNNN");
 
     return NextResponse.json(store);
   } catch (error) {

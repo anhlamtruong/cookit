@@ -45,7 +45,7 @@ export const StoreModal = () => {
     //*STORE_MODAL
     try {
       setLoading(true);
-      const response = await axios.post("/api/store", values);
+      const response = await axios.post("/api/admin/store", values);
 
       // if (response.status === 200) {
       //   toast.success("Success Creating Store!");

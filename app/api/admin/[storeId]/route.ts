@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import getCurrentUser from "@/actions/getCurrentUser";
-
+import prismaMongoDb from "@/lib/service/prisma_mongodb";
 export async function GET(request: Request, context: any) {
   try {
     const { params } = context;
@@ -91,6 +91,29 @@ export async function DELETE(
         userId,
       },
     });
+    const userMongo = await prismaMongoDb.user.findUnique({
+      where: {
+        email: user?.email as string,
+        id: user?.id,
+      },
+    });
+
+    if (userMongo && userMongo.storeIds.includes(params.storeId)) {
+      const updatedStoreIds = userMongo.storeIds.filter(
+        (id) => id !== params.storeId
+      );
+      await prismaMongoDb.user.update({
+        where: { id: userMongo.id },
+        data: {
+          storeIds: updatedStoreIds,
+        },
+      });
+    } else {
+      return new NextResponse("Could not find user to assign store", {
+        status: 402,
+      });
+    }
+
     return NextResponse.json(store);
   } catch (error) {
     console.error("[STORE_DELETE]", error);

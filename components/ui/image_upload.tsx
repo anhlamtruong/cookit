@@ -55,7 +55,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset="rnqcakoj">
+      <CldUploadWidget
+        onUpload={onUpload}
+        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME_BILLBOARD}
+      >
         {({ open }) => {
           const onClick = () => {
             open();

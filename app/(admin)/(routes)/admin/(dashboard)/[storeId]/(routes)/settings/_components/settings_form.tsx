@@ -69,8 +69,7 @@ const SettingsForm: React.FC<SettingsForm> = ({ initialDataStore }) => {
       setLoading(true);
       await axios.delete(`/api/admin/${params.storeId}`);
       removeStoreData();
-      router.refresh();
-      toast.arguments("SUCCESSFULLY DELETED STORE");
+      toast.success("SUCCESSFULLY DELETED STORE");
       router.push("/admin");
     } catch (error) {
       toast.error("Make sure you removed all products and categories first.");

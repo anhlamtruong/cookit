@@ -24,7 +24,6 @@ import { Icons } from "@/components/ui/icons";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AlertModal from "@/components/modals/alert_modal";
-import { ApiAlert } from "@/components/ui/api_alert";
 import useOrigin from "@/hooks/use_origin";
 import ImageUpload from "@/components/ui/image_upload";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { Store } from "@prisma-client-mysql";
 
 export const fetchStores = async (): Promise<Store[]> => {
-  const { data } = await axios.get<Store[]>("/api/stores");
+  const { data } = await axios.get<Store[]>("/api/admin/stores");
 
   return data;
 };
