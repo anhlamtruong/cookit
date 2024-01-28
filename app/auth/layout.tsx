@@ -1,5 +1,5 @@
 "use client";
-import { useStyles } from "@/hooks/use_styles";
+import { useStyles } from "@/hooks/authenticate/use_styles";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const styles = useStyles();

@@ -2,7 +2,7 @@
 
 import ThemeSwitcher from "@/components/ui/theme_switcher";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useStyles } from "@/hooks/use_styles";
+import { useStyles } from "@/hooks/authenticate/use_styles";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";

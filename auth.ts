@@ -63,6 +63,9 @@ export const {
       if (token.isTwoFactorEnabled && session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
       }
+      if (token.cookitStore && session.user) {
+        session.user.storeIds = token.storeIds as String[];
+      }
       if (session.user) {
         session.user.name = token.name;
         session.user.email = token.email;

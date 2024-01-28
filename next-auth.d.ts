@@ -2,6 +2,8 @@ import NextAuth, { type DefaultSession } from "next-auth";
 import { UserRole } from "./generated/@prisma-client-authenticate";
 export type ExtendedUser = DefaultSession["user"] & {
   role: UserRole;
+  // cookitStore: CookitStore;
+  storeIds: String[];
   isTwoFactorEnabled: boolean;
   isOAuth: boolean;
 };

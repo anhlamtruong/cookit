@@ -115,7 +115,8 @@ exports.Prisma.UserScalarFieldEnum = {
   image: 'image',
   password: 'password',
   role: 'role',
-  isTwoFactorEnabled: 'isTwoFactorEnabled'
+  isTwoFactorEnabled: 'isTwoFactorEnabled',
+  storeIds: 'storeIds'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -159,6 +160,12 @@ exports.Prisma.TwoFactorConfirmationScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.CookitStoreScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  storeIds: 'storeIds'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -175,7 +182,8 @@ exports.Prisma.NullsOrder = {
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
-  USER: 'USER'
+  USER: 'USER',
+  CHEF: 'CHEF'
 };
 
 exports.Prisma.ModelName = {
@@ -184,7 +192,8 @@ exports.Prisma.ModelName = {
   VerificationToken: 'VerificationToken',
   PasswordResetToken: 'PasswordResetToken',
   TwoFactorToken: 'TwoFactorToken',
-  TwoFactorConfirmation: 'TwoFactorConfirmation'
+  TwoFactorConfirmation: 'TwoFactorConfirmation',
+  CookitStore: 'CookitStore'
 };
 
 /**

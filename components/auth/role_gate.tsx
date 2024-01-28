@@ -1,6 +1,6 @@
 "use client";
 
-import { useCurrentRole } from "@/hooks/use_current_role";
+import { useCurrentRole } from "@/hooks/authenticate/use_current_role";
 import { FormError } from "@/components/form_error";
 import { UserRole } from "@/generated/@prisma-client-authenticate";
 

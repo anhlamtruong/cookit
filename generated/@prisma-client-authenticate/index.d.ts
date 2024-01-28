@@ -43,6 +43,11 @@ export type TwoFactorToken = $Result.DefaultSelection<Prisma.$TwoFactorTokenPayl
  * 
  */
 export type TwoFactorConfirmation = $Result.DefaultSelection<Prisma.$TwoFactorConfirmationPayload>
+/**
+ * Model CookitStore
+ * 
+ */
+export type CookitStore = $Result.DefaultSelection<Prisma.$CookitStorePayload>
 
 /**
  * Enums
@@ -50,7 +55,8 @@ export type TwoFactorConfirmation = $Result.DefaultSelection<Prisma.$TwoFactorCo
 export namespace $Enums {
   export const UserRole: {
   ADMIN: 'ADMIN',
-  USER: 'USER'
+  USER: 'USER',
+  CHEF: 'CHEF'
 };
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
@@ -242,6 +248,16 @@ export class PrismaClient<
     * ```
     */
   get twoFactorConfirmation(): Prisma.TwoFactorConfirmationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.cookitStore`: Exposes CRUD operations for the **CookitStore** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CookitStores
+    * const cookitStores = await prisma.cookitStore.findMany()
+    * ```
+    */
+  get cookitStore(): Prisma.CookitStoreDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -717,7 +733,8 @@ export namespace Prisma {
     VerificationToken: 'VerificationToken',
     PasswordResetToken: 'PasswordResetToken',
     TwoFactorToken: 'TwoFactorToken',
-    TwoFactorConfirmation: 'TwoFactorConfirmation'
+    TwoFactorConfirmation: 'TwoFactorConfirmation',
+    CookitStore: 'CookitStore'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -734,7 +751,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'account' | 'verificationToken' | 'passwordResetToken' | 'twoFactorToken' | 'twoFactorConfirmation'
+      modelProps: 'user' | 'account' | 'verificationToken' | 'passwordResetToken' | 'twoFactorToken' | 'twoFactorConfirmation' | 'cookitStore'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1134,6 +1151,72 @@ export namespace Prisma {
           }
         }
       }
+      CookitStore: {
+        payload: Prisma.$CookitStorePayload<ExtArgs>
+        fields: Prisma.CookitStoreFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CookitStoreFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CookitStoreFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          findFirst: {
+            args: Prisma.CookitStoreFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CookitStoreFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          findMany: {
+            args: Prisma.CookitStoreFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>[]
+          }
+          create: {
+            args: Prisma.CookitStoreCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          createMany: {
+            args: Prisma.CookitStoreCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.CookitStoreDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          update: {
+            args: Prisma.CookitStoreUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          deleteMany: {
+            args: Prisma.CookitStoreDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CookitStoreUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CookitStoreUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CookitStorePayload>
+          }
+          aggregate: {
+            args: Prisma.CookitStoreAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCookitStore>
+          }
+          groupBy: {
+            args: Prisma.CookitStoreGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CookitStoreGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CookitStoreCountArgs<ExtArgs>,
+            result: $Utils.Optional<CookitStoreCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1357,6 +1440,7 @@ export namespace Prisma {
     password: number
     role: number
     isTwoFactorEnabled: number
+    storeIds: number
     _all: number
   }
 
@@ -1392,6 +1476,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isTwoFactorEnabled?: true
+    storeIds?: true
     _all?: true
   }
 
@@ -1476,6 +1561,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole
     isTwoFactorEnabled: boolean
+    storeIds: string[]
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1504,6 +1590,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isTwoFactorEnabled?: boolean
+    storeIds?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     twoFactorConfirmation?: boolean | User$twoFactorConfirmationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1518,6 +1605,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isTwoFactorEnabled?: boolean
+    storeIds?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1542,6 +1630,7 @@ export namespace Prisma {
       password: string | null
       role: $Enums.UserRole
       isTwoFactorEnabled: boolean
+      storeIds: string[]
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1947,6 +2036,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly isTwoFactorEnabled: FieldRef<"User", 'Boolean'>
+    readonly storeIds: FieldRef<"User", 'String[]'>
   }
     
 
@@ -6803,6 +6893,850 @@ export namespace Prisma {
 
 
   /**
+   * Model CookitStore
+   */
+
+  export type AggregateCookitStore = {
+    _count: CookitStoreCountAggregateOutputType | null
+    _min: CookitStoreMinAggregateOutputType | null
+    _max: CookitStoreMaxAggregateOutputType | null
+  }
+
+  export type CookitStoreMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type CookitStoreMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type CookitStoreCountAggregateOutputType = {
+    id: number
+    userId: number
+    storeIds: number
+    _all: number
+  }
+
+
+  export type CookitStoreMinAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type CookitStoreMaxAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type CookitStoreCountAggregateInputType = {
+    id?: true
+    userId?: true
+    storeIds?: true
+    _all?: true
+  }
+
+  export type CookitStoreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CookitStore to aggregate.
+     */
+    where?: CookitStoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CookitStores to fetch.
+     */
+    orderBy?: CookitStoreOrderByWithRelationInput | CookitStoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CookitStoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CookitStores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CookitStores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CookitStores
+    **/
+    _count?: true | CookitStoreCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CookitStoreMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CookitStoreMaxAggregateInputType
+  }
+
+  export type GetCookitStoreAggregateType<T extends CookitStoreAggregateArgs> = {
+        [P in keyof T & keyof AggregateCookitStore]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCookitStore[P]>
+      : GetScalarType<T[P], AggregateCookitStore[P]>
+  }
+
+
+
+
+  export type CookitStoreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CookitStoreWhereInput
+    orderBy?: CookitStoreOrderByWithAggregationInput | CookitStoreOrderByWithAggregationInput[]
+    by: CookitStoreScalarFieldEnum[] | CookitStoreScalarFieldEnum
+    having?: CookitStoreScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CookitStoreCountAggregateInputType | true
+    _min?: CookitStoreMinAggregateInputType
+    _max?: CookitStoreMaxAggregateInputType
+  }
+
+  export type CookitStoreGroupByOutputType = {
+    id: string
+    userId: string
+    storeIds: string[]
+    _count: CookitStoreCountAggregateOutputType | null
+    _min: CookitStoreMinAggregateOutputType | null
+    _max: CookitStoreMaxAggregateOutputType | null
+  }
+
+  type GetCookitStoreGroupByPayload<T extends CookitStoreGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CookitStoreGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CookitStoreGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CookitStoreGroupByOutputType[P]>
+            : GetScalarType<T[P], CookitStoreGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CookitStoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    storeIds?: boolean
+  }, ExtArgs["result"]["cookitStore"]>
+
+  export type CookitStoreSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    storeIds?: boolean
+  }
+
+
+  export type $CookitStorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CookitStore"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      storeIds: string[]
+    }, ExtArgs["result"]["cookitStore"]>
+    composites: {}
+  }
+
+
+  type CookitStoreGetPayload<S extends boolean | null | undefined | CookitStoreDefaultArgs> = $Result.GetResult<Prisma.$CookitStorePayload, S>
+
+  type CookitStoreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CookitStoreFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CookitStoreCountAggregateInputType | true
+    }
+
+  export interface CookitStoreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CookitStore'], meta: { name: 'CookitStore' } }
+    /**
+     * Find zero or one CookitStore that matches the filter.
+     * @param {CookitStoreFindUniqueArgs} args - Arguments to find a CookitStore
+     * @example
+     * // Get one CookitStore
+     * const cookitStore = await prisma.cookitStore.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CookitStoreFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreFindUniqueArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one CookitStore that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CookitStoreFindUniqueOrThrowArgs} args - Arguments to find a CookitStore
+     * @example
+     * // Get one CookitStore
+     * const cookitStore = await prisma.cookitStore.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CookitStoreFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first CookitStore that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreFindFirstArgs} args - Arguments to find a CookitStore
+     * @example
+     * // Get one CookitStore
+     * const cookitStore = await prisma.cookitStore.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CookitStoreFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreFindFirstArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first CookitStore that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreFindFirstOrThrowArgs} args - Arguments to find a CookitStore
+     * @example
+     * // Get one CookitStore
+     * const cookitStore = await prisma.cookitStore.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CookitStoreFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more CookitStores that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CookitStores
+     * const cookitStores = await prisma.cookitStore.findMany()
+     * 
+     * // Get first 10 CookitStores
+     * const cookitStores = await prisma.cookitStore.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cookitStoreWithIdOnly = await prisma.cookitStore.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CookitStoreFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a CookitStore.
+     * @param {CookitStoreCreateArgs} args - Arguments to create a CookitStore.
+     * @example
+     * // Create one CookitStore
+     * const CookitStore = await prisma.cookitStore.create({
+     *   data: {
+     *     // ... data to create a CookitStore
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CookitStoreCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreCreateArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many CookitStores.
+     *     @param {CookitStoreCreateManyArgs} args - Arguments to create many CookitStores.
+     *     @example
+     *     // Create many CookitStores
+     *     const cookitStore = await prisma.cookitStore.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends CookitStoreCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CookitStore.
+     * @param {CookitStoreDeleteArgs} args - Arguments to delete one CookitStore.
+     * @example
+     * // Delete one CookitStore
+     * const CookitStore = await prisma.cookitStore.delete({
+     *   where: {
+     *     // ... filter to delete one CookitStore
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CookitStoreDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreDeleteArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one CookitStore.
+     * @param {CookitStoreUpdateArgs} args - Arguments to update one CookitStore.
+     * @example
+     * // Update one CookitStore
+     * const cookitStore = await prisma.cookitStore.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CookitStoreUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreUpdateArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more CookitStores.
+     * @param {CookitStoreDeleteManyArgs} args - Arguments to filter CookitStores to delete.
+     * @example
+     * // Delete a few CookitStores
+     * const { count } = await prisma.cookitStore.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CookitStoreDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CookitStoreDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CookitStores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CookitStores
+     * const cookitStore = await prisma.cookitStore.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CookitStoreUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CookitStore.
+     * @param {CookitStoreUpsertArgs} args - Arguments to update or create a CookitStore.
+     * @example
+     * // Update or create a CookitStore
+     * const cookitStore = await prisma.cookitStore.upsert({
+     *   create: {
+     *     // ... data to create a CookitStore
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CookitStore we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CookitStoreUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CookitStoreUpsertArgs<ExtArgs>>
+    ): Prisma__CookitStoreClient<$Result.GetResult<Prisma.$CookitStorePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of CookitStores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreCountArgs} args - Arguments to filter CookitStores to count.
+     * @example
+     * // Count the number of CookitStores
+     * const count = await prisma.cookitStore.count({
+     *   where: {
+     *     // ... the filter for the CookitStores we want to count
+     *   }
+     * })
+    **/
+    count<T extends CookitStoreCountArgs>(
+      args?: Subset<T, CookitStoreCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CookitStoreCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CookitStore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CookitStoreAggregateArgs>(args: Subset<T, CookitStoreAggregateArgs>): Prisma.PrismaPromise<GetCookitStoreAggregateType<T>>
+
+    /**
+     * Group by CookitStore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CookitStoreGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CookitStoreGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CookitStoreGroupByArgs['orderBy'] }
+        : { orderBy?: CookitStoreGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CookitStoreGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCookitStoreGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CookitStore model
+   */
+  readonly fields: CookitStoreFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CookitStore.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CookitStoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the CookitStore model
+   */ 
+  interface CookitStoreFieldRefs {
+    readonly id: FieldRef<"CookitStore", 'String'>
+    readonly userId: FieldRef<"CookitStore", 'String'>
+    readonly storeIds: FieldRef<"CookitStore", 'String[]'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * CookitStore findUnique
+   */
+  export type CookitStoreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter, which CookitStore to fetch.
+     */
+    where: CookitStoreWhereUniqueInput
+  }
+
+
+  /**
+   * CookitStore findUniqueOrThrow
+   */
+  export type CookitStoreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter, which CookitStore to fetch.
+     */
+    where: CookitStoreWhereUniqueInput
+  }
+
+
+  /**
+   * CookitStore findFirst
+   */
+  export type CookitStoreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter, which CookitStore to fetch.
+     */
+    where?: CookitStoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CookitStores to fetch.
+     */
+    orderBy?: CookitStoreOrderByWithRelationInput | CookitStoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CookitStores.
+     */
+    cursor?: CookitStoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CookitStores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CookitStores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CookitStores.
+     */
+    distinct?: CookitStoreScalarFieldEnum | CookitStoreScalarFieldEnum[]
+  }
+
+
+  /**
+   * CookitStore findFirstOrThrow
+   */
+  export type CookitStoreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter, which CookitStore to fetch.
+     */
+    where?: CookitStoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CookitStores to fetch.
+     */
+    orderBy?: CookitStoreOrderByWithRelationInput | CookitStoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CookitStores.
+     */
+    cursor?: CookitStoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CookitStores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CookitStores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CookitStores.
+     */
+    distinct?: CookitStoreScalarFieldEnum | CookitStoreScalarFieldEnum[]
+  }
+
+
+  /**
+   * CookitStore findMany
+   */
+  export type CookitStoreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter, which CookitStores to fetch.
+     */
+    where?: CookitStoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CookitStores to fetch.
+     */
+    orderBy?: CookitStoreOrderByWithRelationInput | CookitStoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CookitStores.
+     */
+    cursor?: CookitStoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CookitStores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CookitStores.
+     */
+    skip?: number
+    distinct?: CookitStoreScalarFieldEnum | CookitStoreScalarFieldEnum[]
+  }
+
+
+  /**
+   * CookitStore create
+   */
+  export type CookitStoreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * The data needed to create a CookitStore.
+     */
+    data: XOR<CookitStoreCreateInput, CookitStoreUncheckedCreateInput>
+  }
+
+
+  /**
+   * CookitStore createMany
+   */
+  export type CookitStoreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CookitStores.
+     */
+    data: CookitStoreCreateManyInput | CookitStoreCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * CookitStore update
+   */
+  export type CookitStoreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * The data needed to update a CookitStore.
+     */
+    data: XOR<CookitStoreUpdateInput, CookitStoreUncheckedUpdateInput>
+    /**
+     * Choose, which CookitStore to update.
+     */
+    where: CookitStoreWhereUniqueInput
+  }
+
+
+  /**
+   * CookitStore updateMany
+   */
+  export type CookitStoreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CookitStores.
+     */
+    data: XOR<CookitStoreUpdateManyMutationInput, CookitStoreUncheckedUpdateManyInput>
+    /**
+     * Filter which CookitStores to update
+     */
+    where?: CookitStoreWhereInput
+  }
+
+
+  /**
+   * CookitStore upsert
+   */
+  export type CookitStoreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * The filter to search for the CookitStore to update in case it exists.
+     */
+    where: CookitStoreWhereUniqueInput
+    /**
+     * In case the CookitStore found by the `where` argument doesn't exist, create a new CookitStore with this data.
+     */
+    create: XOR<CookitStoreCreateInput, CookitStoreUncheckedCreateInput>
+    /**
+     * In case the CookitStore was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CookitStoreUpdateInput, CookitStoreUncheckedUpdateInput>
+  }
+
+
+  /**
+   * CookitStore delete
+   */
+  export type CookitStoreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+    /**
+     * Filter which CookitStore to delete.
+     */
+    where: CookitStoreWhereUniqueInput
+  }
+
+
+  /**
+   * CookitStore deleteMany
+   */
+  export type CookitStoreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CookitStores to delete
+     */
+    where?: CookitStoreWhereInput
+  }
+
+
+  /**
+   * CookitStore without action
+   */
+  export type CookitStoreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CookitStore
+     */
+    select?: CookitStoreSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -6824,7 +7758,8 @@ export namespace Prisma {
     image: 'image',
     password: 'password',
     role: 'role',
-    isTwoFactorEnabled: 'isTwoFactorEnabled'
+    isTwoFactorEnabled: 'isTwoFactorEnabled',
+    storeIds: 'storeIds'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -6884,6 +7819,15 @@ export namespace Prisma {
   };
 
   export type TwoFactorConfirmationScalarFieldEnum = (typeof TwoFactorConfirmationScalarFieldEnum)[keyof typeof TwoFactorConfirmationScalarFieldEnum]
+
+
+  export const CookitStoreScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    storeIds: 'storeIds'
+  };
+
+  export type CookitStoreScalarFieldEnum = (typeof CookitStoreScalarFieldEnum)[keyof typeof CookitStoreScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7007,6 +7951,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isTwoFactorEnabled?: BoolFilter<"User"> | boolean
+    storeIds?: StringNullableListFilter<"User">
     accounts?: AccountListRelationFilter
     twoFactorConfirmation?: XOR<TwoFactorConfirmationNullableRelationFilter, TwoFactorConfirmationWhereInput> | null
   }
@@ -7020,6 +7965,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     isTwoFactorEnabled?: SortOrder
+    storeIds?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     twoFactorConfirmation?: TwoFactorConfirmationOrderByWithRelationInput
   }
@@ -7036,6 +7982,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isTwoFactorEnabled?: BoolFilter<"User"> | boolean
+    storeIds?: StringNullableListFilter<"User">
     accounts?: AccountListRelationFilter
     twoFactorConfirmation?: XOR<TwoFactorConfirmationNullableRelationFilter, TwoFactorConfirmationWhereInput> | null
   }, "id" | "email">
@@ -7049,6 +7996,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     isTwoFactorEnabled?: SortOrder
+    storeIds?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -7066,6 +8014,7 @@ export namespace Prisma {
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     isTwoFactorEnabled?: BoolWithAggregatesFilter<"User"> | boolean
+    storeIds?: StringNullableListFilter<"User">
   }
 
   export type AccountWhereInput = {
@@ -7345,6 +8294,48 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"TwoFactorConfirmation"> | string
   }
 
+  export type CookitStoreWhereInput = {
+    AND?: CookitStoreWhereInput | CookitStoreWhereInput[]
+    OR?: CookitStoreWhereInput[]
+    NOT?: CookitStoreWhereInput | CookitStoreWhereInput[]
+    id?: StringFilter<"CookitStore"> | string
+    userId?: StringFilter<"CookitStore"> | string
+    storeIds?: StringNullableListFilter<"CookitStore">
+  }
+
+  export type CookitStoreOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    storeIds?: SortOrder
+  }
+
+  export type CookitStoreWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: CookitStoreWhereInput | CookitStoreWhereInput[]
+    OR?: CookitStoreWhereInput[]
+    NOT?: CookitStoreWhereInput | CookitStoreWhereInput[]
+    storeIds?: StringNullableListFilter<"CookitStore">
+  }, "id" | "userId">
+
+  export type CookitStoreOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    storeIds?: SortOrder
+    _count?: CookitStoreCountOrderByAggregateInput
+    _max?: CookitStoreMaxOrderByAggregateInput
+    _min?: CookitStoreMinOrderByAggregateInput
+  }
+
+  export type CookitStoreScalarWhereWithAggregatesInput = {
+    AND?: CookitStoreScalarWhereWithAggregatesInput | CookitStoreScalarWhereWithAggregatesInput[]
+    OR?: CookitStoreScalarWhereWithAggregatesInput[]
+    NOT?: CookitStoreScalarWhereWithAggregatesInput | CookitStoreScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CookitStore"> | string
+    userId?: StringWithAggregatesFilter<"CookitStore"> | string
+    storeIds?: StringNullableListFilter<"CookitStore">
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -7354,6 +8345,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     accounts?: AccountCreateNestedManyWithoutUserInput
     twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
   }
@@ -7367,6 +8359,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
   }
@@ -7380,6 +8373,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     accounts?: AccountUpdateManyWithoutUserNestedInput
     twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
   }
@@ -7393,6 +8387,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -7406,6 +8401,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7417,6 +8413,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7428,6 +8425,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
   }
 
   export type AccountCreateInput = {
@@ -7715,6 +8713,48 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type CookitStoreCreateInput = {
+    id?: string
+    userId: string
+    storeIds?: CookitStoreCreatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreUncheckedCreateInput = {
+    id?: string
+    userId: string
+    storeIds?: CookitStoreCreatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    storeIds?: CookitStoreUpdatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    storeIds?: CookitStoreUpdatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreCreateManyInput = {
+    id?: string
+    userId: string
+    storeIds?: CookitStoreCreatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    storeIds?: CookitStoreUpdatestoreIdsInput | string[]
+  }
+
+  export type CookitStoreUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    storeIds?: CookitStoreUpdatestoreIdsInput | string[]
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7768,6 +8808,14 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -7797,6 +8845,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isTwoFactorEnabled?: SortOrder
+    storeIds?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -8097,6 +9146,26 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type CookitStoreCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    storeIds?: SortOrder
+  }
+
+  export type CookitStoreMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CookitStoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserCreatestoreIdsInput = {
+    set: string[]
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -8141,6 +9210,11 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type UserUpdatestoreIdsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -8229,6 +9303,15 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutTwoFactorConfirmationInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTwoFactorConfirmationInput, UserUpdateWithoutTwoFactorConfirmationInput>, UserUncheckedUpdateWithoutTwoFactorConfirmationInput>
+  }
+
+  export type CookitStoreCreatestoreIdsInput = {
+    set: string[]
+  }
+
+  export type CookitStoreUpdatestoreIdsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8535,6 +9618,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
   }
 
@@ -8547,6 +9631,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -8575,6 +9660,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
   }
 
@@ -8587,6 +9673,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -8599,6 +9686,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
 
@@ -8611,6 +9699,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     isTwoFactorEnabled?: boolean
+    storeIds?: UserCreatestoreIdsInput | string[]
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -8639,6 +9728,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
 
@@ -8651,6 +9741,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    storeIds?: UserUpdatestoreIdsInput | string[]
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -8743,6 +9834,10 @@ export namespace Prisma {
      * @deprecated Use TwoFactorConfirmationDefaultArgs instead
      */
     export type TwoFactorConfirmationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TwoFactorConfirmationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CookitStoreDefaultArgs instead
+     */
+    export type CookitStoreArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CookitStoreDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

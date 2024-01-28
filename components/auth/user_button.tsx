@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { FaUser } from "react-icons/fa";
-import { useCurrentUser } from "@/hooks/use_current_user";
+import { useCurrentUser } from "@/hooks/authenticate/use_current_user";
 import LogoutButton from "@/components/auth/logout_button";
 export const UserButton = () => {
   const user = useCurrentUser();

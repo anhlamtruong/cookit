@@ -16,6 +16,7 @@ datasource db {
 enum UserRole{
   ADMIN
   USER
+  CHEF
 }
 
 model User {
@@ -29,6 +30,8 @@ model User {
   accounts      Account[]
   isTwoFactorEnabled Boolean @default(false)
   twoFactorConfirmation TwoFactorConfirmation? 
+  storeIds      String[] @default([])
+  // cookitStore CookitStore @relation("UserToCookitStore")
 }
 
 model Account {
@@ -77,5 +80,12 @@ model TwoFactorConfirmation{
   id String @id @default(cuid())
   userId String 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId])
+}
+model CookitStore{
+  id String @id @default(cuid())
+  userId String 
+  // user User @relation("UserToCookitStore",fields: [userId], references: [id])
+  storeIds String[]
   @@unique([userId])
 }
