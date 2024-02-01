@@ -23,7 +23,7 @@ import { Icons } from "@/components/ui/icons";
 import { toast } from "sonner";
 import axios from "axios";
 import useStoreData from "@/hooks/store/useStore";
-import AlertModal from "@/components/modals/alert_modal";
+import { AlertModal } from "@/components/modals/alert_modal";
 import { ApiAlert } from "@/components/ui/api_alert";
 import useOrigin from "@/hooks/store/use_origin";
 import { Store } from "@/generated/@prisma-client-mysql";

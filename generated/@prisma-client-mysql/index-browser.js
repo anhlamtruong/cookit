@@ -117,7 +117,7 @@ exports.Prisma.StoreScalarFieldEnum = {
 
 exports.Prisma.BillboardScalarFieldEnum = {
   id: 'id',
-  storedId: 'storedId',
+  storeId: 'storeId',
   label: 'label',
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',

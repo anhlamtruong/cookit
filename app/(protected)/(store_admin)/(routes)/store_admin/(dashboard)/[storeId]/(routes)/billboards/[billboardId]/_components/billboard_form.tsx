@@ -20,9 +20,9 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
-import {toast} from "sonner";
+import { toast } from "sonner";
 import axios from "axios";
-import AlertModal from "@/components/modals/alert_modal";
+import { AlertModal } from "@/components/modals/alert_modal";
 import useOrigin from "@/hooks/store/use_origin";
 import ImageUpload from "@/components/ui/image_upload";
 import { Billboard } from "@/generated/@prisma-client-mysql";
@@ -40,15 +40,14 @@ interface BillboardForm {
 const BillboardForm: React.FC<BillboardForm> = ({ initialDataBillboard }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const title = initialDataBillboard ? "Edit Billboard" : "Create Billboard";
   const description = initialDataBillboard
     ? "Edit Billboard"
     : "Add a new Billboard";
   const toastMessage = initialDataBillboard
-    ? "Billboard updated!"
-    : "Billboard created !";
+    ? "Billboard updated! Redirecting to Billboards Page"
+    : "Billboard created! Redirecting to Billboards Page";
   const action = initialDataBillboard ? "Save changes" : "Create";
 
   const [open, setOpen] = useState(false);
@@ -77,6 +76,7 @@ const BillboardForm: React.FC<BillboardForm> = ({ initialDataBillboard }) => {
         )) as Billboard;
       }
       // setStoreData(newStore);
+      router.push(`/store_admin/${params.storeId}/billboards`);
       router.refresh();
       toast.success(toastMessage);
     } catch (error) {

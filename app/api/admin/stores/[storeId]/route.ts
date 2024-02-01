@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prismaMySQL from "@/lib/service/prisma_mysql";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 import { currentUser } from "@/lib/auth";
 
 export async function GET(request: Request, context: any) {

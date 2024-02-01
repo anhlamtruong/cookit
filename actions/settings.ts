@@ -3,7 +3,7 @@
 import * as z from "zod";
 import bcrypt from "bcryptjs";
 
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 import { getUserByEmail, getUserById } from "@/data/user";
 import { currentUser } from "@/lib/auth";
 import { update } from "@/auth";

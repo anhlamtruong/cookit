@@ -40,7 +40,6 @@ import { UserRole } from "@/generated/@prisma-client-authenticate";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
-  const styles = useStyles();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
   const { update } = useSession();

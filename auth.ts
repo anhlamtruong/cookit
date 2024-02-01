@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getUserById } from "@/data/user";
 import { getTwoFactorConfirmationByUserId } from "@/data/two_factor_confirmation";

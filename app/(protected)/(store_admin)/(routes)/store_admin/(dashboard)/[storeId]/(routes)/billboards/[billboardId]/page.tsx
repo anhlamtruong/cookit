@@ -1,11 +1,12 @@
 import BillboardForm from "./_components/billboard_form";
+import prismaMySQL from "@/lib/service/prisma_mysql";
 
 const BillboardPage = async ({
   params,
 }: {
   params: { billboardId: string };
 }) => {
-  const billboard = await prismaMySQL?.billboard.findUnique({
+  const billboard = await prismaMySQL.billboard.findUnique({
     where: {
       id: params.billboardId,
     },

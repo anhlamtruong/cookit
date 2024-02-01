@@ -1,4 +1,4 @@
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 
 export const getUserByEmail = async (email: string) => {
   try {

@@ -37,7 +37,7 @@ export async function POST(
       data: {
         label: label,
         imageUrl: imageUrl,
-        storedId: params.storeId,
+        storeId: params.storeId,
       },
     });
     if (!billboard) {
@@ -81,7 +81,7 @@ export async function GET(
 
     const billboards = await prismaMySQL.billboard.findMany({
       where: {
-        storedId: params.storeId,
+        storeId: params.storeId,
       },
     });
 

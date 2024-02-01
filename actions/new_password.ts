@@ -1,7 +1,7 @@
 "use server";
 import * as z from "zod";
 import bcrypt from "bcryptjs";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 
 import { NewPasswordSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";

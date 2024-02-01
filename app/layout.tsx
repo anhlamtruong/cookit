@@ -7,8 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "SASSY AUTHY",
-  description: "Very Sexy Authentication Application",
+  title: "Cookit",
+  description: "Where we recognize your talents",
 };
 
 export default async function RootLayout({

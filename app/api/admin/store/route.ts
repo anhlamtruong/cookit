@@ -1,6 +1,5 @@
 import { currentUser } from "@/lib/auth";
 import prismaMySQL from "@/lib/service/prisma_mysql";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -61,7 +60,9 @@ export async function GET(request: Request) {
     if (store) {
       return NextResponse.json(store);
     } else {
-      return NextResponse.redirect(new URL("http://localhost:3000/admin"));
+      return NextResponse.redirect(
+        new URL("http://localhost:3000/store_admin")
+      );
     }
   } catch (error) {
     console.log(error, "ADMIN ERROR");

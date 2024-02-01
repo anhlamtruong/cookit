@@ -2,7 +2,7 @@
 import * as z from "zod";
 import bcrypt from "bcryptjs";
 import { RegisterSchema } from "@/schemas";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";

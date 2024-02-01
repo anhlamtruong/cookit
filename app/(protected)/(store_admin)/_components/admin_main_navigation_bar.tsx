@@ -16,17 +16,17 @@ const MainNavigationBar = ({
     {
       href: `/store_admin/${params.storeId}`,
       label: "Overview",
-      active: pathname === `admin/${params.storeId}`,
+      active: pathname === `/store_admin/${params.storeId}`,
     },
     {
       href: `/store_admin/${params.storeId}/billboards`,
       label: "Billboards",
-      active: pathname === `admin/${params.storeId}/billboards`,
+      active: pathname === `/store_admin/${params.storeId}/billboards`,
     },
     {
       href: `/store_admin/${params.storeId}/settings`,
       label: "Settings",
-      active: pathname === `admin/${params.storeId}/settings`,
+      active: pathname === `/store_admin/${params.storeId}/settings`,
     },
   ];
   return (

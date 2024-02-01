@@ -1,7 +1,7 @@
 import crypt from "crypto";
 import { v4 as uuid_v4 } from "uuid";
 
-import prismaAuthenticate from "./db/authenticate_db";
+import prismaAuthenticate from "./service/authenticate_db";
 import { getVerificationTokenByEmail } from "@/data/verification-token";
 import { getPasswordResetTokenByEmail } from "@/data/password_reset_token";
 

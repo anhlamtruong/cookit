@@ -2547,7 +2547,7 @@ export namespace Prisma {
 
   export type BillboardMinAggregateOutputType = {
     id: string | null
-    storedId: string | null
+    storeId: string | null
     label: string | null
     imageUrl: string | null
     createdAt: Date | null
@@ -2556,7 +2556,7 @@ export namespace Prisma {
 
   export type BillboardMaxAggregateOutputType = {
     id: string | null
-    storedId: string | null
+    storeId: string | null
     label: string | null
     imageUrl: string | null
     createdAt: Date | null
@@ -2565,7 +2565,7 @@ export namespace Prisma {
 
   export type BillboardCountAggregateOutputType = {
     id: number
-    storedId: number
+    storeId: number
     label: number
     imageUrl: number
     createdAt: number
@@ -2576,7 +2576,7 @@ export namespace Prisma {
 
   export type BillboardMinAggregateInputType = {
     id?: true
-    storedId?: true
+    storeId?: true
     label?: true
     imageUrl?: true
     createdAt?: true
@@ -2585,7 +2585,7 @@ export namespace Prisma {
 
   export type BillboardMaxAggregateInputType = {
     id?: true
-    storedId?: true
+    storeId?: true
     label?: true
     imageUrl?: true
     createdAt?: true
@@ -2594,7 +2594,7 @@ export namespace Prisma {
 
   export type BillboardCountAggregateInputType = {
     id?: true
-    storedId?: true
+    storeId?: true
     label?: true
     imageUrl?: true
     createdAt?: true
@@ -2676,7 +2676,7 @@ export namespace Prisma {
 
   export type BillboardGroupByOutputType = {
     id: string
-    storedId: string
+    storeId: string
     label: string
     imageUrl: string
     createdAt: Date
@@ -2702,7 +2702,7 @@ export namespace Prisma {
 
   export type BillboardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    storedId?: boolean
+    storeId?: boolean
     label?: boolean
     imageUrl?: boolean
     createdAt?: boolean
@@ -2712,7 +2712,7 @@ export namespace Prisma {
 
   export type BillboardSelectScalar = {
     id?: boolean
-    storedId?: boolean
+    storeId?: boolean
     label?: boolean
     imageUrl?: boolean
     createdAt?: boolean
@@ -2731,7 +2731,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      storedId: string
+      storeId: string
       label: string
       imageUrl: string
       createdAt: Date
@@ -3132,7 +3132,7 @@ export namespace Prisma {
    */ 
   interface BillboardFieldRefs {
     readonly id: FieldRef<"Billboard", 'String'>
-    readonly storedId: FieldRef<"Billboard", 'String'>
+    readonly storeId: FieldRef<"Billboard", 'String'>
     readonly label: FieldRef<"Billboard", 'String'>
     readonly imageUrl: FieldRef<"Billboard", 'String'>
     readonly createdAt: FieldRef<"Billboard", 'DateTime'>
@@ -8416,7 +8416,7 @@ export namespace Prisma {
 
   export const BillboardScalarFieldEnum: {
     id: 'id',
-    storedId: 'storedId',
+    storeId: 'storeId',
     label: 'label',
     imageUrl: 'imageUrl',
     createdAt: 'createdAt',
@@ -8603,7 +8603,7 @@ export namespace Prisma {
     OR?: BillboardWhereInput[]
     NOT?: BillboardWhereInput | BillboardWhereInput[]
     id?: StringFilter<"Billboard"> | string
-    storedId?: StringFilter<"Billboard"> | string
+    storeId?: StringFilter<"Billboard"> | string
     label?: StringFilter<"Billboard"> | string
     imageUrl?: StringFilter<"Billboard"> | string
     createdAt?: DateTimeFilter<"Billboard"> | Date | string
@@ -8613,7 +8613,7 @@ export namespace Prisma {
 
   export type BillboardOrderByWithRelationInput = {
     id?: SortOrder
-    storedId?: SortOrder
+    storeId?: SortOrder
     label?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
@@ -8626,7 +8626,7 @@ export namespace Prisma {
     AND?: BillboardWhereInput | BillboardWhereInput[]
     OR?: BillboardWhereInput[]
     NOT?: BillboardWhereInput | BillboardWhereInput[]
-    storedId?: StringFilter<"Billboard"> | string
+    storeId?: StringFilter<"Billboard"> | string
     label?: StringFilter<"Billboard"> | string
     imageUrl?: StringFilter<"Billboard"> | string
     createdAt?: DateTimeFilter<"Billboard"> | Date | string
@@ -8636,7 +8636,7 @@ export namespace Prisma {
 
   export type BillboardOrderByWithAggregationInput = {
     id?: SortOrder
-    storedId?: SortOrder
+    storeId?: SortOrder
     label?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
@@ -8651,7 +8651,7 @@ export namespace Prisma {
     OR?: BillboardScalarWhereWithAggregatesInput[]
     NOT?: BillboardScalarWhereWithAggregatesInput | BillboardScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Billboard"> | string
-    storedId?: StringWithAggregatesFilter<"Billboard"> | string
+    storeId?: StringWithAggregatesFilter<"Billboard"> | string
     label?: StringWithAggregatesFilter<"Billboard"> | string
     imageUrl?: StringWithAggregatesFilter<"Billboard"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Billboard"> | Date | string
@@ -9028,7 +9028,7 @@ export namespace Prisma {
 
   export type BillboardUncheckedCreateInput = {
     id?: string
-    storedId: string
+    storeId: string
     label: string
     imageUrl: string
     createdAt?: Date | string
@@ -9046,7 +9046,7 @@ export namespace Prisma {
 
   export type BillboardUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    storedId?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9055,7 +9055,7 @@ export namespace Prisma {
 
   export type BillboardCreateManyInput = {
     id?: string
-    storedId: string
+    storeId: string
     label: string
     imageUrl: string
     createdAt?: Date | string
@@ -9072,7 +9072,7 @@ export namespace Prisma {
 
   export type BillboardUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    storedId?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9453,7 +9453,7 @@ export namespace Prisma {
 
   export type BillboardCountOrderByAggregateInput = {
     id?: SortOrder
-    storedId?: SortOrder
+    storeId?: SortOrder
     label?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
@@ -9462,7 +9462,7 @@ export namespace Prisma {
 
   export type BillboardMaxOrderByAggregateInput = {
     id?: SortOrder
-    storedId?: SortOrder
+    storeId?: SortOrder
     label?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
@@ -9471,7 +9471,7 @@ export namespace Prisma {
 
   export type BillboardMinOrderByAggregateInput = {
     id?: SortOrder
-    storedId?: SortOrder
+    storeId?: SortOrder
     label?: SortOrder
     imageUrl?: SortOrder
     createdAt?: SortOrder
@@ -10630,7 +10630,7 @@ export namespace Prisma {
     OR?: BillboardScalarWhereInput[]
     NOT?: BillboardScalarWhereInput | BillboardScalarWhereInput[]
     id?: StringFilter<"Billboard"> | string
-    storedId?: StringFilter<"Billboard"> | string
+    storeId?: StringFilter<"Billboard"> | string
     label?: StringFilter<"Billboard"> | string
     imageUrl?: StringFilter<"Billboard"> | string
     createdAt?: DateTimeFilter<"Billboard"> | Date | string

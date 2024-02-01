@@ -13,7 +13,7 @@ import { getUserByEmail } from "@/data/user";
 import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
 import { getTwoFactorTokenByEmail } from "@/data/two_factor_token";
 import { getTwoFactorConfirmationByUserId } from "@/data/two_factor_confirmation";
-import prismaAuthenticate from "@/lib/db/authenticate_db";
+import prismaAuthenticate from "@/lib/service/authenticate_db";
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
