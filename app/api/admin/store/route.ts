@@ -14,17 +14,17 @@ export async function POST(req: Request) {
     if (!name) {
       return new NextResponse("Name of the Store is required", { status: 400 });
     }
-    const duplicateStore = await prismaMySQL.store.findFirst({
-      where: {
-        name: name,
-        userId: user.id,
-      },
-    });
-    if (duplicateStore) {
-      return new NextResponse(" Store Already Created ", {
-        status: 406,
-      });
-    }
+    // const duplicateStore = await prismaMySQL.store.findFirst({
+    //   where: {
+    //     name: name,
+    //     userId: user.id,
+    //   },
+    // });
+    // if (duplicateStore) {
+    //   return new NextResponse(" Store Already Created ", {
+    //     status: 406,
+    //   });
+    // }
     const store = await prismaMySQL.store.create({
       data: {
         name: name,

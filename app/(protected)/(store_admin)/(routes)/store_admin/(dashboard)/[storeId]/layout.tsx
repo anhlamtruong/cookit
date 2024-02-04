@@ -10,7 +10,7 @@ import useStoreData from "@/hooks/store/useStore";
 import useAsyncDataFetcher from "@/hooks/store/useAsyncDataFetcher";
 import { Store } from "@/generated/@prisma-client-mysql";
 import { UserRole } from "@/generated/@prisma-client-authenticate";
-import NavigationBar from "@/app/(protected)/(store_admin)/_components/admin_navigation_bar";
+import { NavigationBar } from "@/app/(protected)/(store_admin)/_components/admin_navigation_bar";
 import { RoleGate } from "@/components/auth/role_gate";
 
 export default function DashboardLayout({

@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { FaUser } from "react-icons/fa";
 import { useCurrentUser } from "@/hooks/authenticate/use_current_user";
 import LogoutButton from "@/components/auth/logout_button";
+import { UserSettingsForm } from "@/app/(protected)/sassy_authy/settings/_components/setting_form";
 export const UserButton = () => {
   const user = useCurrentUser();
   return (
@@ -38,7 +39,8 @@ export const UserButton = () => {
             </DrawerDescription>
           </DrawerHeader>
 
-          <div className="p-4  w-full">
+          <div className="p-4 flex flex-col w-full gap-2">
+            <UserSettingsForm></UserSettingsForm>
             <LogoutButton>
               <div className="flex items-center ">
                 <ExitIcon className=" h-4 w-4 mr-2"></ExitIcon>{" "}
@@ -48,7 +50,6 @@ export const UserButton = () => {
           </div>
 
           <DrawerFooter>
-            <Button>Submit</Button>
             <DrawerClose asChild>
               <Button variant="outline">Close</Button>
             </DrawerClose>

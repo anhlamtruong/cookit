@@ -23,13 +23,12 @@ import { Icons } from "@/components/ui/icons";
 import { toast } from "sonner";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert_modal";
-import useOrigin from "@/hooks/store/use_origin";
 import ImageUpload from "@/components/ui/image_upload";
 import { Billboard } from "@/generated/@prisma-client-mysql";
 
 const formSchema = z.object({
   label: z.string().min(1),
-  imageUrl: z.string().min(1),
+  imageUrl: z.string().min(1, { message: "Image is required" }),
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -91,10 +90,12 @@ const BillboardForm: React.FC<BillboardForm> = ({ initialDataBillboard }) => {
       await axios.delete(
         `/api/admin/${params.storeId}/billboards/${params.billboardId}`
       );
+
       router.refresh();
+      router.push(`/store_admin/${params.storeId}/billboards`);
       toast.arguments("SUCCESSFULLY DELETED BILLBOARD");
-      router.push("/admin");
     } catch (error) {
+      console.error(error);
       toast.error(
         "Make sure you removed all categories using this billboard first."
       );
@@ -136,7 +137,7 @@ const BillboardForm: React.FC<BillboardForm> = ({ initialDataBillboard }) => {
             name="imageUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Background Image</FormLabel>
+                <FormLabel>{`Background Image (*)`}</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value ? [field.value] : []}
@@ -155,7 +156,7 @@ const BillboardForm: React.FC<BillboardForm> = ({ initialDataBillboard }) => {
               name="label"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>{`Label (*)`}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}

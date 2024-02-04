@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,8 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+
+      await axios.delete(`/api/admin/${params.storeId}/billboards/${data.id}`);
       toast.success("Billboard deleted.");
       router.refresh();
     } catch (error) {
@@ -71,7 +72,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(
+                `/store_admin/${params.storeId}/billboards/${data.id}`
+              )
             }
           >
             <Edit className="mr-2 h-4 w-4" /> Update

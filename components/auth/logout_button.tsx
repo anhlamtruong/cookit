@@ -3,6 +3,7 @@
 import { logout } from "@/actions/logout";
 import { useTransition } from "react";
 import { BeatLoader } from "react-spinners";
+import { Button } from "../ui/button";
 
 interface LogoutButtonProps {
   children: React.ReactNode;
@@ -22,10 +23,15 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ children }) => {
   };
 
   return (
-    <div onClick={onClick} className=" items-center flex cursor-pointer">
+    <Button
+      disabled={isPending}
+      variant={"destructive"}
+      onClick={onClick}
+      className=" items-center w-1/2 cursor-pointer"
+    >
       {children}
       {isPending && <BeatLoader></BeatLoader>}
-    </div>
+    </Button>
   );
 };
 

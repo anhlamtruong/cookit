@@ -24,6 +24,11 @@ const MainNavigationBar = ({
       active: pathname === `/store_admin/${params.storeId}/billboards`,
     },
     {
+      href: `/store_admin/${params.storeId}/categories`,
+      label: "Categories",
+      active: pathname === `/store_admin/${params.storeId}/categories`,
+    },
+    {
       href: `/store_admin/${params.storeId}/settings`,
       label: "Settings",
       active: pathname === `/store_admin/${params.storeId}/settings`,
