@@ -1,4 +1,4 @@
-import { Billboard } from "@/generated/@prisma-client-mysql";
+import { Billboard } from "@/generated/mysql/@prisma-client-mysql";
 import axios from "axios";
 
 export const fetchBillboards = async (url: string): Promise<Billboard[]> => {

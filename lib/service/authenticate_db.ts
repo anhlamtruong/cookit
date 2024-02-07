@@ -1,4 +1,4 @@
-import { PrismaClient as PrismaClientAuthenticate } from "@/generated/@prisma-client-authenticate";
+import { PrismaClient as PrismaClientAuthenticate } from "@/generated/authenticate/@prisma-client-authenticate";
 
 declare global {
   var prismaAuthenticate: PrismaClientAuthenticate | undefined;

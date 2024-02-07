@@ -29,6 +29,21 @@ const MainNavigationBar = ({
       active: pathname === `/store_admin/${params.storeId}/categories`,
     },
     {
+      href: `/store_admin/${params.storeId}/sizes`,
+      label: "Sizes",
+      active: pathname === `/store_admin/${params.storeId}/sizes`,
+    },
+    {
+      href: `/store_admin/${params.storeId}/menus`,
+      label: "Menus",
+      active: pathname === `/store_admin/${params.storeId}/menus`,
+    },
+    {
+      href: `/store_admin/${params.storeId}/orders`,
+      label: "Orders",
+      active: pathname === `/store_admin/${params.storeId}/orders`,
+    },
+    {
       href: `/store_admin/${params.storeId}/settings`,
       label: "Settings",
       active: pathname === `/store_admin/${params.storeId}/settings`,

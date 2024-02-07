@@ -7,7 +7,7 @@ import { FormSuccess } from "@/components/form_success";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { admin } from "@/actions/admin";
-import { UserRole } from "@/generated/@prisma-client-authenticate";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 const AdminPage = () => {
   const role = useCurrentRole();
   const onServerActionClick = () => {

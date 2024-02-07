@@ -1,18 +1,14 @@
-import { PrismaClient as PrismaClientMySQL } from "@/generated/@prisma-client-mysql";
+import { PrismaClient as PrismaClientMySQL } from "@/generated/mysql/@prisma-client-mysql";
+
+const prismaClientSingleton = () => {
+  return new PrismaClientMySQL();
+};
 
 declare global {
-  var prismaMySQL: PrismaClientMySQL | undefined;
+  var prismaMySQL: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
-const prismaMySQL =
-  global.prismaMySQL ||
-  new PrismaClientMySQL({
-    log: ["query", "error", "warn"],
-  });
-
-prismaMySQL.$on("error" as never, (e) => {
-  console.error("Prisma MySQL Client Error:", e);
-});
+const prismaMySQL = global.prismaMySQL ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== "production") global.prismaMySQL = prismaMySQL;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Store } from "@/generated/@prisma-client-mysql";
+import { Store } from "@/generated/mysql/@prisma-client-mysql";
 import useAsyncDataFetcher from "@/hooks/store/useAsyncDataFetcher";
 import { useStoreModal } from "@/hooks/store/useStoreModal";
 import { useRouter } from "next/navigation";

@@ -61,7 +61,7 @@ export async function GET(
 ) {
   try {
     const user = await currentUser();
-    const body = await req.json();
+
     if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }

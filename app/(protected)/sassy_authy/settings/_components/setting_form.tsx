@@ -33,7 +33,7 @@ import { Input } from "@/components/ui/input";
 import { FormError } from "@/components/form_error";
 import { FormSuccess } from "@/components/form_success";
 import { ClockLoader } from "react-spinners";
-import { UserRole } from "@/generated/@prisma-client-authenticate";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 
 export const UserSettingsForm = () => {
   const user = useCurrentUser();

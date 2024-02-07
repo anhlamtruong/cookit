@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { Store } from "@/generated/@prisma-client-mysql";
-import { User } from "@/generated/@prisma-client-authenticate";
+import { Store } from "@/generated/mysql/@prisma-client-mysql";
+import { User } from "@/generated/authenticate/@prisma-client-authenticate";
 interface useStoreModalUser {
   userData: null | User;
   setStoreData: (data: User) => void;

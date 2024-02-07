@@ -1,4 +1,4 @@
-import { Store } from "@/generated/@prisma-client-mysql";
+import { Store } from "@/generated/mysql/@prisma-client-mysql";
 import axios from "axios";
 
 export const fetchStores = async (): Promise<Store[]> => {

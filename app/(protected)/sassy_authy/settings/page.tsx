@@ -36,7 +36,7 @@ import { Input } from "@/components/ui/input";
 import { FormError } from "@/components/form_error";
 import { FormSuccess } from "@/components/form_success";
 import { ClockLoader } from "react-spinners";
-import { UserRole } from "@/generated/@prisma-client-authenticate";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -176,6 +176,7 @@ const SettingsPage = () => {
                       <SelectContent>
                         <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
                         <SelectItem value={UserRole.USER}>User</SelectItem>
+                        <SelectItem value={UserRole.CHEF}>Chef</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

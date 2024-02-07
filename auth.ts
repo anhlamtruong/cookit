@@ -5,7 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getUserById } from "@/data/user";
 import { getTwoFactorConfirmationByUserId } from "@/data/two_factor_confirmation";
 import { getAccountByUserId } from "@/data/account";
-import { UserRole } from "./generated/@prisma-client-authenticate";
+import { UserRole } from "./generated/authenticate/@prisma-client-authenticate";
 export const {
   handlers: { GET, POST },
   auth,

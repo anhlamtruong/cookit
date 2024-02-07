@@ -1,4 +1,4 @@
-import { User } from "@/generated/@prisma-client-authenticate";
+import { User } from "@/generated/authenticate/@prisma-client-authenticate";
 import { currentUser } from "@/lib/auth";
 import { NextResponse } from "next/server";
 

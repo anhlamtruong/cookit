@@ -1,4 +1,4 @@
-import { User } from "@/generated/@prisma-client-authenticate";
+import { User } from "@/generated/authenticate/@prisma-client-authenticate";
 import { currentUser } from "@/lib/auth";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import { NextResponse } from "next/server";

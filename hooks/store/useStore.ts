@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Store } from "@/generated/@prisma-client-mysql";
+import { Store } from "@/generated/mysql/@prisma-client-mysql";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewStore, fetchStores } from "@/lib/service/api/stores";
 
