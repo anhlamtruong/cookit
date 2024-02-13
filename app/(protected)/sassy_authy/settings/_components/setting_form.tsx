@@ -152,6 +152,7 @@ export const UserSettingsForm = () => {
           <FormField
             control={form.control}
             name="role"
+            // disabled={user.role === UserRole.USER}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Role</FormLabel>

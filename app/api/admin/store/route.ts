@@ -42,6 +42,10 @@ export async function GET(request: Request) {
     if (!user?.id) {
       return NextResponse.redirect(new URL("/sign-in"));
     }
+    const origin =
+      typeof window !== "undefined" && window.location.origin
+        ? window.location.origin
+        : "";
 
     const store = await prismaMySQL.store.findFirst({
       where: { userId: user.id },
@@ -50,9 +54,11 @@ export async function GET(request: Request) {
     if (store) {
       return NextResponse.json(store);
     } else {
-      return NextResponse.redirect(
-        new URL("http://localhost:3000/store_admin")
-      );
+      if (origin) {
+        return NextResponse.redirect(new URL(`${origin}/store_admin`));
+      } else {
+        new URL(`/store_admin`);
+      }
     }
   } catch (error) {
     console.log(error, "ADMIN ERROR");
