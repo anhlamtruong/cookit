@@ -1,12 +1,22 @@
 import { NextResponse } from "next/server";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import { currentUser } from "@/lib/auth";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 
 export async function GET(
   req: Request,
   { params }: { params: { menuId: string } }
 ) {
   try {
+    const user = await currentUser();
+
+    if (!user) {
+      return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
+    }
     if (!params.menuId) {
       return new NextResponse("Menu id is required", { status: 400 });
     }
@@ -38,6 +48,10 @@ export async function DELETE(
     const userId = user?.id;
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
 
     if (!params.menuId) {
@@ -77,12 +91,16 @@ export async function PATCH(
     const userId = user?.id;
     const body = await req.json();
 
+    if (!userId) {
+      return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
+    }
+
     const { name, price, categoryId, images, sizeId, isFeatured, isArchived } =
       body;
-
-    if (!userId) {
-      return new NextResponse("Unauthenticated", { status: 403 });
-    }
 
     if (!params.menuId) {
       return new NextResponse("Menu id is required", { status: 400 });

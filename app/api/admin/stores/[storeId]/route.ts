@@ -2,9 +2,19 @@ import { NextResponse } from "next/server";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import prismaAuthenticate from "@/lib/service/authenticate_db";
 import { currentUser } from "@/lib/auth";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 
 export async function GET(request: Request, context: any) {
   try {
+    const user = await currentUser();
+
+    if (!user) {
+      return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
+    }
     const { params } = context;
     if (!params) {
       return new NextResponse("API ERROR", {
@@ -41,8 +51,13 @@ export async function PATCH(
 ) {
   try {
     const user = await currentUser();
-    if (!user?.id) {
+
+    if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
     const userId = user.id;
     const body = await request.json();
@@ -78,8 +93,13 @@ export async function DELETE(
 ) {
   try {
     const user = await currentUser();
-    if (!user?.id) {
+
+    if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
     const userId = user.id;
 

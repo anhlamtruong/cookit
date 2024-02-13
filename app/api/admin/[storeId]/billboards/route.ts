@@ -1,3 +1,4 @@
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 import { currentUser } from "@/lib/auth";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import { NextResponse } from "next/server";
@@ -12,6 +13,10 @@ export async function POST(
     const { label, imageUrl } = body;
     if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
     if (!label) {
       return new NextResponse("Label is required", { status: 400 });
@@ -64,6 +69,9 @@ export async function GET(
     const body = await req.json();
     if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
+    }
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
     if (!params.storeId) {
       return new NextResponse("Store ID is required", { status: 400 });

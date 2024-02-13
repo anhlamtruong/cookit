@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import prismaMySQL from "@/lib/service/prisma_mysql";
 import { currentUser } from "@/lib/auth";
+import { UserRole } from "@/generated/authenticate/@prisma-client-authenticate";
 
 export async function GET(
   req: Request,
   { params }: { params: { categoryId: string } }
 ) {
   try {
+    const user = await currentUser();
     if (!params.categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
+    }
+    const userId = user?.id;
+    if (!userId) {
+      return new NextResponse("Unauthenticated", { status: 403 });
+    }
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
 
     const category = await prismaMySQL.category.findUnique({
@@ -33,6 +42,9 @@ export async function DELETE(
     const userId = user?.id;
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
+    }
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
 
     if (!params.categoryId) {
@@ -76,6 +88,10 @@ export async function PATCH(
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
+    }
+
+    if (user.role === UserRole.USER) {
+      return new NextResponse("Unauthorized", { status: 402 });
     }
 
     if (!name) {

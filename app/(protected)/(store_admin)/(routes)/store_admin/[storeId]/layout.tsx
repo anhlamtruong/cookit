@@ -49,11 +49,11 @@ export default function DashboardLayout({
   return storeError ? (
     <div>{storeError.massage}</div>
   ) : (
-    <RoleGate allowedRole={UserRole.ADMIN}>
-      <RoleGate allowedRole={UserRole.CHEF}>
+    <>
+      <RoleGate allowedRole={[UserRole.CHEF, UserRole.ADMIN]}>
         <NavigationBar className=""></NavigationBar>
         {children}
       </RoleGate>
-    </RoleGate>
+    </>
   );
 }
