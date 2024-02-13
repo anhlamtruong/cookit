@@ -1,29 +1,101 @@
 import { create } from "zustand";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { Menu } from "@/generated/mysql/@prisma-client-mysql";
+import {
+  Category,
+  Menu,
+  Size,
+  Image as ImageMenu,
+  OrderItem,
+} from "@/generated/mysql/@prisma-client-mysql";
 
 interface CartStore {
-  items: Menu[];
-  addItem: (data: Menu) => void;
+  items: (Menu & {
+    images: ImageMenu[];
+    size?: Size;
+    category?: Category;
+    quantity?: number;
+    unitPrice?: number;
+  })[];
+  addItem: (
+    data: Menu & {
+      images: ImageMenu[];
+      size?: Size;
+      category?: Category;
+      quantity?: number;
+      unitPrice?: number;
+    }
+  ) => void;
   removeItem: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
+  increaseQuantity: (id: string) => void;
   removeAll: () => void;
+  totalItemsCount: () => number;
 }
 
 const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
-      addItem: (data: Menu) => {
-        const currentItems = get().items;
-        const existingItem = currentItems.find((item) => item.id === data.id);
-
-        if (existingItem) {
-          return toast("Item already in cart.");
+      addItem: (
+        data: Menu & {
+          images: ImageMenu[];
+          size?: Size;
+          category?: Category;
+          quantity?: number;
+          unitPrice?: number;
         }
+      ) => {
+        let currentItems = get().items;
+        const existingIndex = currentItems.findIndex(
+          (item) => item.id === data.id
+        );
 
-        set({ items: [...get().items, data] });
-        toast.success("Item added to cart.");
+        if (existingIndex !== -1) {
+          // If item already exists, increment its quantity
+          currentItems[existingIndex].quantity! += data.quantity ?? 1;
+          set({ items: [...currentItems] });
+          toast.success("Item quantity updated in cart.");
+        } else {
+          // Add new item if it doesn't exist in the cart
+          const newItem = {
+            ...data,
+            quantity: data.quantity ?? 1,
+            unitPrice: Number(data.price),
+          };
+          set({ items: [...currentItems, newItem] });
+          toast.success("Item added to cart.");
+        }
+      },
+      increaseQuantity: (id: string) => {
+        const currentItems = get().items;
+        const itemIndex = currentItems.findIndex((item) => item.id === id);
+        if (itemIndex !== -1) {
+          currentItems[itemIndex].quantity! += 1;
+          set({ items: [...currentItems] });
+          toast.success("Item quantity increased.");
+        }
+      },
+
+      decreaseQuantity: (id: string) => {
+        let currentItems = get().items;
+        const itemIndex = currentItems.findIndex((item) => item.id === id);
+        if (itemIndex !== -1) {
+          if (currentItems[itemIndex].quantity! > 1) {
+            currentItems[itemIndex].quantity! -= 1;
+            set({ items: [...currentItems] });
+            toast.success("Item quantity decreased.");
+          } else {
+            // Remove item from cart if quantity is less than or equal to 1
+            currentItems = currentItems.filter((item) => item.id !== id);
+            set({ items: currentItems });
+            toast.success("Item removed from cart.");
+          }
+        }
+      },
+      totalItemsCount: () => {
+        const items = get().items;
+        return items.reduce((total, item) => total + (item.quantity ?? 1), 0);
       },
       removeItem: (id: string) => {
         set({ items: [...get().items.filter((item) => item.id !== id)] });

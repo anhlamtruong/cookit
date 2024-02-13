@@ -14,7 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { addDays, format } from "date-fns";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -39,6 +44,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { Calendar } from "@/components/ui/calendar";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -46,6 +54,9 @@ const formSchema = z.object({
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
   sizeId: z.string().min(1),
+  pickupDate: z.date({
+    required_error: "A date to pick up is required.",
+  }),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
@@ -82,6 +93,7 @@ export const MenuForm: React.FC<MenuForm> = ({
       ? {
           ...initialDataMenu,
           price: parseFloat(String(initialDataMenu?.price)),
+          pickupDate: initialDataMenu?.pickupDate ?? undefined,
         }
       : {
           name: "",
@@ -91,6 +103,7 @@ export const MenuForm: React.FC<MenuForm> = ({
           sizeId: "",
           isFeatured: false,
           isArchived: false,
+          pickupDate: new Date(),
         },
   });
 
@@ -105,7 +118,7 @@ export const MenuForm: React.FC<MenuForm> = ({
       } else {
         (await axios.post(`/api/admin/${params.storeId}/menus`, data)) as Menu;
       }
-      // setStoreData(newStore);
+
       router.push(`/store_admin/${params.storeId}/menus`);
       router.refresh();
       toast.success(toastMessage);
@@ -285,6 +298,7 @@ export const MenuForm: React.FC<MenuForm> = ({
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="isFeatured"
@@ -322,6 +336,48 @@ export const MenuForm: React.FC<MenuForm> = ({
                       This menu will not appear anywhere in the store.
                     </FormDescription>
                   </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="pickupDate"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Pick Up Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-[240px] pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={loading}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    Choose the date when your customer can pick your food up{" "}
+                  </FormDescription>
+                  <FormMessage />
                 </FormItem>
               )}
             />

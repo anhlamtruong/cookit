@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Container from "./container";
+import { Container } from "./container";
 import MainNav from "./main_navigation_bar";
 import { Category } from "@/generated/mysql/@prisma-client-mysql";
 import useAsyncDataFetcher from "@/hooks/store/useAsyncDataFetcher";
@@ -12,7 +12,7 @@ export const revalidate = 0;
 const NavigationBar = () => {
   const url = useOrigin();
   const { data, isLoading } = useAsyncDataFetcher<Category[]>(
-    `${url}/api/admin/categories`
+    `${url}/api/user_store/categories`
   );
   const categories = data;
   return isLoading ? (
@@ -21,7 +21,7 @@ const NavigationBar = () => {
     <div className="border-b">
       <Container>
         <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center">
-          <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
+          <Link href="/store_user" className="ml-4 flex lg:ml-0 gap-x-2">
             <p className="font-bold text-xl">STORE</p>
           </Link>
           <MainNav data={categories!} />

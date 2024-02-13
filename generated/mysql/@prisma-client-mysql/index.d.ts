@@ -5976,6 +5976,7 @@ export namespace Prisma {
     sizeId: string | null
     title: string | null
     description: string | null
+    pickupDate: Date | null
     price: Decimal | null
     isFeatured: boolean | null
     isArchived: boolean | null
@@ -5992,6 +5993,7 @@ export namespace Prisma {
     sizeId: string | null
     title: string | null
     description: string | null
+    pickupDate: Date | null
     price: Decimal | null
     isFeatured: boolean | null
     isArchived: boolean | null
@@ -6008,6 +6010,7 @@ export namespace Prisma {
     sizeId: number
     title: number
     description: number
+    pickupDate: number
     price: number
     isFeatured: number
     isArchived: number
@@ -6036,6 +6039,7 @@ export namespace Prisma {
     sizeId?: true
     title?: true
     description?: true
+    pickupDate?: true
     price?: true
     isFeatured?: true
     isArchived?: true
@@ -6052,6 +6056,7 @@ export namespace Prisma {
     sizeId?: true
     title?: true
     description?: true
+    pickupDate?: true
     price?: true
     isFeatured?: true
     isArchived?: true
@@ -6068,6 +6073,7 @@ export namespace Prisma {
     sizeId?: true
     title?: true
     description?: true
+    pickupDate?: true
     price?: true
     isFeatured?: true
     isArchived?: true
@@ -6171,6 +6177,7 @@ export namespace Prisma {
     sizeId: string
     title: string | null
     description: string | null
+    pickupDate: Date | null
     price: Decimal
     isFeatured: boolean
     isArchived: boolean
@@ -6206,6 +6213,7 @@ export namespace Prisma {
     sizeId?: boolean
     title?: boolean
     description?: boolean
+    pickupDate?: boolean
     price?: boolean
     isFeatured?: boolean
     isArchived?: boolean
@@ -6230,6 +6238,7 @@ export namespace Prisma {
     sizeId?: boolean
     title?: boolean
     description?: boolean
+    pickupDate?: boolean
     price?: boolean
     isFeatured?: boolean
     isArchived?: boolean
@@ -6269,6 +6278,7 @@ export namespace Prisma {
       sizeId: string
       title: string | null
       description: string | null
+      pickupDate: Date | null
       price: Prisma.Decimal
       isFeatured: boolean
       isArchived: boolean
@@ -6689,6 +6699,7 @@ export namespace Prisma {
     readonly sizeId: FieldRef<"Menu", 'String'>
     readonly title: FieldRef<"Menu", 'String'>
     readonly description: FieldRef<"Menu", 'String'>
+    readonly pickupDate: FieldRef<"Menu", 'DateTime'>
     readonly price: FieldRef<"Menu", 'Decimal'>
     readonly isFeatured: FieldRef<"Menu", 'Boolean'>
     readonly isArchived: FieldRef<"Menu", 'Boolean'>
@@ -8047,24 +8058,21 @@ export namespace Prisma {
   }
 
   export type OrderAvgAggregateOutputType = {
-    customerId: number | null
     totalAmount: number | null
   }
 
   export type OrderSumAggregateOutputType = {
-    customerId: number | null
     totalAmount: number | null
   }
 
   export type OrderMinAggregateOutputType = {
     id: string | null
-    customerId: number | null
+    customerId: string | null
     status: $Enums.OrderStatus | null
     isPaid: boolean | null
     phone: string | null
     address: string | null
     orderDate: Date | null
-    pickupDate: Date | null
     totalAmount: number | null
     notes: string | null
     storeId: string | null
@@ -8074,13 +8082,12 @@ export namespace Prisma {
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
-    customerId: number | null
+    customerId: string | null
     status: $Enums.OrderStatus | null
     isPaid: boolean | null
     phone: string | null
     address: string | null
     orderDate: Date | null
-    pickupDate: Date | null
     totalAmount: number | null
     notes: string | null
     storeId: string | null
@@ -8096,7 +8103,6 @@ export namespace Prisma {
     phone: number
     address: number
     orderDate: number
-    pickupDate: number
     totalAmount: number
     notes: number
     storeId: number
@@ -8107,12 +8113,10 @@ export namespace Prisma {
 
 
   export type OrderAvgAggregateInputType = {
-    customerId?: true
     totalAmount?: true
   }
 
   export type OrderSumAggregateInputType = {
-    customerId?: true
     totalAmount?: true
   }
 
@@ -8124,7 +8128,6 @@ export namespace Prisma {
     phone?: true
     address?: true
     orderDate?: true
-    pickupDate?: true
     totalAmount?: true
     notes?: true
     storeId?: true
@@ -8140,7 +8143,6 @@ export namespace Prisma {
     phone?: true
     address?: true
     orderDate?: true
-    pickupDate?: true
     totalAmount?: true
     notes?: true
     storeId?: true
@@ -8156,7 +8158,6 @@ export namespace Prisma {
     phone?: true
     address?: true
     orderDate?: true
-    pickupDate?: true
     totalAmount?: true
     notes?: true
     storeId?: true
@@ -8253,13 +8254,12 @@ export namespace Prisma {
 
   export type OrderGroupByOutputType = {
     id: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid: boolean
     phone: string
     address: string
     orderDate: Date
-    pickupDate: Date | null
     totalAmount: number
     notes: string | null
     storeId: string
@@ -8294,7 +8294,6 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     orderDate?: boolean
-    pickupDate?: boolean
     totalAmount?: boolean
     notes?: boolean
     storeId?: boolean
@@ -8313,7 +8312,6 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     orderDate?: boolean
-    pickupDate?: boolean
     totalAmount?: boolean
     notes?: boolean
     storeId?: boolean
@@ -8336,13 +8334,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      customerId: number
+      customerId: string
       status: $Enums.OrderStatus
       isPaid: boolean
       phone: string
       address: string
       orderDate: Date
-      pickupDate: Date | null
       totalAmount: number
       notes: string | null
       storeId: string
@@ -8746,13 +8743,12 @@ export namespace Prisma {
    */ 
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'String'>
-    readonly customerId: FieldRef<"Order", 'Int'>
+    readonly customerId: FieldRef<"Order", 'String'>
     readonly status: FieldRef<"Order", 'OrderStatus'>
     readonly isPaid: FieldRef<"Order", 'Boolean'>
     readonly phone: FieldRef<"Order", 'String'>
     readonly address: FieldRef<"Order", 'String'>
     readonly orderDate: FieldRef<"Order", 'DateTime'>
-    readonly pickupDate: FieldRef<"Order", 'DateTime'>
     readonly totalAmount: FieldRef<"Order", 'Float'>
     readonly notes: FieldRef<"Order", 'String'>
     readonly storeId: FieldRef<"Order", 'String'>
@@ -12019,6 +12015,7 @@ export namespace Prisma {
     sizeId: 'sizeId',
     title: 'title',
     description: 'description',
+    pickupDate: 'pickupDate',
     price: 'price',
     isFeatured: 'isFeatured',
     isArchived: 'isArchived',
@@ -12047,7 +12044,6 @@ export namespace Prisma {
     phone: 'phone',
     address: 'address',
     orderDate: 'orderDate',
-    pickupDate: 'pickupDate',
     totalAmount: 'totalAmount',
     notes: 'notes',
     storeId: 'storeId',
@@ -12460,6 +12456,7 @@ export namespace Prisma {
     sizeId?: StringFilter<"Menu"> | string
     title?: StringNullableFilter<"Menu"> | string | null
     description?: StringNullableFilter<"Menu"> | string | null
+    pickupDate?: DateTimeNullableFilter<"Menu"> | Date | string | null
     price?: DecimalFilter<"Menu"> | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFilter<"Menu"> | boolean
     isArchived?: BoolFilter<"Menu"> | boolean
@@ -12483,6 +12480,7 @@ export namespace Prisma {
     sizeId?: SortOrder
     title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    pickupDate?: SortOrderInput | SortOrder
     price?: SortOrder
     isFeatured?: SortOrder
     isArchived?: SortOrder
@@ -12509,6 +12507,7 @@ export namespace Prisma {
     sizeId?: StringFilter<"Menu"> | string
     title?: StringNullableFilter<"Menu"> | string | null
     description?: StringNullableFilter<"Menu"> | string | null
+    pickupDate?: DateTimeNullableFilter<"Menu"> | Date | string | null
     price?: DecimalFilter<"Menu"> | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFilter<"Menu"> | boolean
     isArchived?: BoolFilter<"Menu"> | boolean
@@ -12532,6 +12531,7 @@ export namespace Prisma {
     sizeId?: SortOrder
     title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    pickupDate?: SortOrderInput | SortOrder
     price?: SortOrder
     isFeatured?: SortOrder
     isArchived?: SortOrder
@@ -12556,6 +12556,7 @@ export namespace Prisma {
     sizeId?: StringWithAggregatesFilter<"Menu"> | string
     title?: StringNullableWithAggregatesFilter<"Menu"> | string | null
     description?: StringNullableWithAggregatesFilter<"Menu"> | string | null
+    pickupDate?: DateTimeNullableWithAggregatesFilter<"Menu"> | Date | string | null
     price?: DecimalWithAggregatesFilter<"Menu"> | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolWithAggregatesFilter<"Menu"> | boolean
     isArchived?: BoolWithAggregatesFilter<"Menu"> | boolean
@@ -12623,13 +12624,12 @@ export namespace Prisma {
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
     id?: StringFilter<"Order"> | string
-    customerId?: IntFilter<"Order"> | number
+    customerId?: StringFilter<"Order"> | string
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     isPaid?: BoolFilter<"Order"> | boolean
     phone?: StringFilter<"Order"> | string
     address?: StringFilter<"Order"> | string
     orderDate?: DateTimeFilter<"Order"> | Date | string
-    pickupDate?: DateTimeNullableFilter<"Order"> | Date | string | null
     totalAmount?: FloatFilter<"Order"> | number
     notes?: StringNullableFilter<"Order"> | string | null
     storeId?: StringFilter<"Order"> | string
@@ -12647,7 +12647,6 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrder
     orderDate?: SortOrder
-    pickupDate?: SortOrderInput | SortOrder
     totalAmount?: SortOrder
     notes?: SortOrderInput | SortOrder
     storeId?: SortOrder
@@ -12662,13 +12661,12 @@ export namespace Prisma {
     AND?: OrderWhereInput | OrderWhereInput[]
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
-    customerId?: IntFilter<"Order"> | number
+    customerId?: StringFilter<"Order"> | string
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     isPaid?: BoolFilter<"Order"> | boolean
     phone?: StringFilter<"Order"> | string
     address?: StringFilter<"Order"> | string
     orderDate?: DateTimeFilter<"Order"> | Date | string
-    pickupDate?: DateTimeNullableFilter<"Order"> | Date | string | null
     totalAmount?: FloatFilter<"Order"> | number
     notes?: StringNullableFilter<"Order"> | string | null
     storeId?: StringFilter<"Order"> | string
@@ -12686,7 +12684,6 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrder
     orderDate?: SortOrder
-    pickupDate?: SortOrderInput | SortOrder
     totalAmount?: SortOrder
     notes?: SortOrderInput | SortOrder
     storeId?: SortOrder
@@ -12704,13 +12701,12 @@ export namespace Prisma {
     OR?: OrderScalarWhereWithAggregatesInput[]
     NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Order"> | string
-    customerId?: IntWithAggregatesFilter<"Order"> | number
+    customerId?: StringWithAggregatesFilter<"Order"> | string
     status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
     isPaid?: BoolWithAggregatesFilter<"Order"> | boolean
     phone?: StringWithAggregatesFilter<"Order"> | string
     address?: StringWithAggregatesFilter<"Order"> | string
     orderDate?: DateTimeWithAggregatesFilter<"Order"> | Date | string
-    pickupDate?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
     totalAmount?: FloatWithAggregatesFilter<"Order"> | number
     notes?: StringNullableWithAggregatesFilter<"Order"> | string | null
     storeId?: StringWithAggregatesFilter<"Order"> | string
@@ -13197,6 +13193,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -13220,6 +13217,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -13235,6 +13233,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -13258,6 +13257,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -13277,6 +13277,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -13289,6 +13290,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -13305,6 +13307,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -13358,13 +13361,12 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     createdAt?: Date | string
@@ -13375,13 +13377,12 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     storeId: string
@@ -13392,13 +13393,12 @@ export namespace Prisma {
 
   export type OrderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13409,13 +13409,12 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: StringFieldUpdateOperationsInput | string
@@ -13426,13 +13425,12 @@ export namespace Prisma {
 
   export type OrderCreateManyInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     storeId: string
@@ -13442,13 +13440,12 @@ export namespace Prisma {
 
   export type OrderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13457,13 +13454,12 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: StringFieldUpdateOperationsInput | string
@@ -13973,6 +13969,17 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[]
@@ -14033,6 +14040,7 @@ export namespace Prisma {
     sizeId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    pickupDate?: SortOrder
     price?: SortOrder
     isFeatured?: SortOrder
     isArchived?: SortOrder
@@ -14054,6 +14062,7 @@ export namespace Prisma {
     sizeId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    pickupDate?: SortOrder
     price?: SortOrder
     isFeatured?: SortOrder
     isArchived?: SortOrder
@@ -14070,6 +14079,7 @@ export namespace Prisma {
     sizeId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    pickupDate?: SortOrder
     price?: SortOrder
     isFeatured?: SortOrder
     isArchived?: SortOrder
@@ -14080,6 +14090,20 @@ export namespace Prisma {
   export type MenuSumOrderByAggregateInput = {
     chefId?: SortOrder
     price?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -14149,17 +14173,6 @@ export namespace Prisma {
     not?: NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -14179,7 +14192,6 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrder
     orderDate?: SortOrder
-    pickupDate?: SortOrder
     totalAmount?: SortOrder
     notes?: SortOrder
     storeId?: SortOrder
@@ -14188,7 +14200,6 @@ export namespace Prisma {
   }
 
   export type OrderAvgOrderByAggregateInput = {
-    customerId?: SortOrder
     totalAmount?: SortOrder
   }
 
@@ -14200,7 +14211,6 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrder
     orderDate?: SortOrder
-    pickupDate?: SortOrder
     totalAmount?: SortOrder
     notes?: SortOrder
     storeId?: SortOrder
@@ -14216,7 +14226,6 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrder
     orderDate?: SortOrder
-    pickupDate?: SortOrder
     totalAmount?: SortOrder
     notes?: SortOrder
     storeId?: SortOrder
@@ -14225,7 +14234,6 @@ export namespace Prisma {
   }
 
   export type OrderSumOrderByAggregateInput = {
-    customerId?: SortOrder
     totalAmount?: SortOrder
   }
 
@@ -14237,20 +14245,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOrderStatusFilter<$PrismaModel>
     _max?: NestedEnumOrderStatusFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -14898,6 +14892,10 @@ export namespace Prisma {
     connect?: ChefScheduleWhereUniqueInput | ChefScheduleWhereUniqueInput[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -15076,10 +15074,6 @@ export namespace Prisma {
 
   export type EnumOrderStatusFieldUpdateOperationsInput = {
     set?: $Enums.OrderStatus
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -15385,6 +15379,17 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[]
@@ -15399,6 +15404,20 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -15432,17 +15451,6 @@ export namespace Prisma {
     not?: NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
     in?: $Enums.OrderStatus[]
@@ -15451,20 +15459,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOrderStatusFilter<$PrismaModel>
     _max?: NestedEnumOrderStatusFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -15515,6 +15509,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -15536,6 +15531,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -15614,13 +15610,12 @@ export namespace Prisma {
 
   export type OrderCreateWithoutStoreInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     createdAt?: Date | string
@@ -15630,13 +15625,12 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutStoreInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     createdAt?: Date | string
@@ -15710,6 +15704,7 @@ export namespace Prisma {
     sizeId?: StringFilter<"Menu"> | string
     title?: StringNullableFilter<"Menu"> | string | null
     description?: StringNullableFilter<"Menu"> | string | null
+    pickupDate?: DateTimeNullableFilter<"Menu"> | Date | string | null
     price?: DecimalFilter<"Menu"> | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFilter<"Menu"> | boolean
     isArchived?: BoolFilter<"Menu"> | boolean
@@ -15794,13 +15789,12 @@ export namespace Prisma {
     OR?: OrderScalarWhereInput[]
     NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
     id?: StringFilter<"Order"> | string
-    customerId?: IntFilter<"Order"> | number
+    customerId?: StringFilter<"Order"> | string
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     isPaid?: BoolFilter<"Order"> | boolean
     phone?: StringFilter<"Order"> | string
     address?: StringFilter<"Order"> | string
     orderDate?: DateTimeFilter<"Order"> | Date | string
-    pickupDate?: DateTimeNullableFilter<"Order"> | Date | string | null
     totalAmount?: FloatFilter<"Order"> | number
     notes?: StringNullableFilter<"Order"> | string | null
     storeId?: StringFilter<"Order"> | string
@@ -16019,6 +16013,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16040,6 +16035,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16151,6 +16147,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16172,6 +16169,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16656,6 +16654,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16678,6 +16677,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16738,6 +16738,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -16760,6 +16761,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -16886,13 +16888,12 @@ export namespace Prisma {
 
   export type OrderCreateWithoutOrderItemsInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     createdAt?: Date | string
@@ -16902,13 +16903,12 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutOrderItemsInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     storeId: string
@@ -16926,6 +16926,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16948,6 +16949,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -16975,13 +16977,12 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16991,13 +16992,12 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: StringFieldUpdateOperationsInput | string
@@ -17021,6 +17021,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17043,6 +17044,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17092,6 +17094,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17113,6 +17116,7 @@ export namespace Prisma {
     categoryId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17195,6 +17199,7 @@ export namespace Prisma {
     name: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17217,6 +17222,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17247,6 +17253,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17269,6 +17276,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17286,6 +17294,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17311,13 +17320,12 @@ export namespace Prisma {
 
   export type OrderCreateManyStoreInput = {
     id?: string
-    customerId: number
+    customerId: string
     status: $Enums.OrderStatus
     isPaid?: boolean
     phone?: string
     address?: string
     orderDate?: Date | string
-    pickupDate?: Date | string | null
     totalAmount: number
     notes?: string | null
     createdAt?: Date | string
@@ -17337,6 +17345,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17358,6 +17367,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17376,6 +17386,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17437,13 +17448,12 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17453,13 +17463,12 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17469,13 +17478,12 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
-    customerId?: IntFieldUpdateOperationsInput | number
+    customerId?: StringFieldUpdateOperationsInput | string
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17550,6 +17558,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17562,6 +17571,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17583,6 +17593,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17601,6 +17612,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17616,6 +17628,7 @@ export namespace Prisma {
     sizeId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17634,6 +17647,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17655,6 +17669,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17673,6 +17688,7 @@ export namespace Prisma {
     sizeId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17810,6 +17826,7 @@ export namespace Prisma {
     categoryId: string
     title?: string | null
     description?: string | null
+    pickupDate?: Date | string | null
     price: Decimal | DecimalJsLike | number | string
     isFeatured?: boolean
     isArchived?: boolean
@@ -17822,6 +17839,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17843,6 +17861,7 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean
@@ -17861,6 +17880,7 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     isArchived?: BoolFieldUpdateOperationsInput | boolean

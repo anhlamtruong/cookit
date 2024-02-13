@@ -9,8 +9,16 @@ export async function POST(
   try {
     const user = await currentUser();
     const body = await req.json();
-    const { name, price, categoryId, sizeId, images, isFeatured, isArchived } =
-      body;
+    const {
+      name,
+      price,
+      categoryId,
+      sizeId,
+      images,
+      isFeatured,
+      isArchived,
+      pickupDate,
+    } = body;
     if (!user) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }
@@ -58,6 +66,7 @@ export async function POST(
         isArchived,
         categoryId,
         sizeId,
+        pickupDate,
         storeId: params.storeId,
         images: {
           createMany: {

@@ -84,6 +84,7 @@ model Menu {
   category          Category      @relation("CategoryToMenu",fields: [categoryId], references: [id])
   title             String?
   description       String?
+  pickupDate        DateTime?   // When the customer plans to pick up the order
   price             Decimal
   isFeatured  Boolean   @default(false)
   isArchived  Boolean   @default(false)
@@ -111,14 +112,13 @@ model ChefSchedule {
 
 model Order {
   id                String    @id @default(uuid())
-  customerId        Int         // Link to the User ID in the authentication service
+  customerId        String         // Link to the User ID in the authentication service
   orderItems        OrderItem[] // Relation to OrderItem model
   status            OrderStatus
   isPaid     Boolean   @default(false)
   phone      String    @default("")
   address    String    @default("")
   orderDate         DateTime    @default(now())
-  pickupDate        DateTime?   // When the customer plans to pick up the order
   totalAmount Float       // Calculated total cost of the order
   notes       String?     // Special instructions or requests
   storeId    String
