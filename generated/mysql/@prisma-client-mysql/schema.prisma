@@ -73,7 +73,7 @@ model Menu {
   id                String         @id @default(uuid())
   storeId           String
   store             Store              @relation("StoreToMenu",fields: [storeId], references: [id])
-  name String
+  name              String
   chefId            Int
   chef              Chef        @relation("ChefToMenu",fields: [chefId], references: [id])
   orderItems        OrderItem[]   @relation("MenuToOrderItem")
