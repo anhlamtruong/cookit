@@ -15,8 +15,8 @@ export async function POST(req: Request) {
     if (!orders || orders.length === 0) {
       return new NextResponse("Orders data is required", { status: 400 });
     }
-    console.log("API TEST");
-    console.log(orders);
+    // console.log("API TEST");
+    // console.log(orders);
     const test = await Promise.all(
       orders.map(
         async ({
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
         }
       )
     );
-    console.log(test);
+    // console.log(test);
 
     return NextResponse.json("Successfully Place", { status: 200 });
   } catch (error) {
