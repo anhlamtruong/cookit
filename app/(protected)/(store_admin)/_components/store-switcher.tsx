@@ -1,6 +1,5 @@
 "use client";
 
-import { Store } from "@/generated//@prisma-client-mysql";
 import {
   Check,
   ChevronsUpDown,
@@ -27,6 +26,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import { Store } from "@/generated/mysql/@prisma-client-mysql";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
